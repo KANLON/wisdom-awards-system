@@ -1,1 +1,6 @@
-"# wisdom-awards-system" 
+# wisdom-awards-system（智慧奖勤助系统）
+
+该系统主要是为了提供高校管理学生奖励和贷款申请等方面的服务，包含公示奖励情况等。<br/>
+
+基于jeecg-boot开源项目，进行的二次快速开发项目。
+
