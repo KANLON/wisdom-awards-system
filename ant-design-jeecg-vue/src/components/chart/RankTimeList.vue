@@ -5,7 +5,7 @@
       <li :key="index" v-for="(item, index) in list">
         <span :class="index < 3 ? 'active' : null">{{ index + 1 }}</span>
         <span>{{ item.name }}</span>
-        <span>{{ item.total }}</span>
+        <span>{{ item.time }}</span>
       </li>
     </ul>
   </div>
@@ -13,7 +13,7 @@
 
 <script>
   export default {
-    name: "RankList",
+    name: "RankTimeList",
     // ['title', 'list']
     props: {
       title: {

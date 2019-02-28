@@ -18,6 +18,8 @@
 *.iws
 *.iml
 *.ipr
+/target/
+
 
 ### NetBeans ###
 /nbproject/private/
@@ -30,4 +32,6 @@
 ### class文件 ### 
 .class
 
-interviewOffer/out/
+
+jeecg-boot/target/
+logs/

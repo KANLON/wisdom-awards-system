@@ -1,6 +1,6 @@
 <template>
   <div class="page-header-index-wide">
-    <a-row :gutter="24">
+    <!--<a-row :gutter="24">
       <a-col :sm="24" :md="12" :xl="6" :style="{ marginBottom: '24px' }">
         <chart-card :loading="loading" title="总销售额" total="￥126,560">
           <a-tooltip title="指标说明" slot="action">
@@ -61,12 +61,12 @@
           </template>
         </chart-card>
       </a-col>
-    </a-row>
+    </a-row>-->
 
     <a-card :loading="loading" :bordered="false" :body-style="{padding: '0'}">
       <div class="salesCard">
         <a-tabs default-active-key="1" size="large" :tab-bar-style="{marginBottom: '24px', paddingLeft: '16px'}">
-          <div class="extra-wrapper" slot="tabBarExtraContent">
+<!--          <div class="extra-wrapper" slot="tabBarExtraContent">
             <div class="extra-item">
               <a>今日</a>
               <a>本周</a>
@@ -74,27 +74,18 @@
               <a>本年</a>
             </div>
             <a-range-picker :style="{width: '256px'}" />
-          </div>
-          <a-tab-pane loading="true" tab="销售额" key="1">
+          </div>-->
+          <a-tab-pane loading="true" tab="消息公告" key="1">
             <a-row>
-              <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
-                <bar title="销售额排行" />
-              </a-col>
-              <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-                <rank-list title="门店销售排行榜" :list="rankList"/>
+              <!--<a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">-->
+                <!--<bar title="销售额排行" />-->
+              <!--</a-col>-->
+              <a-col :xl="24" :lg="24" :md="24" :sm="24" :xs="24">
+                <rank-list :list="rankTimeList"/>
               </a-col>
             </a-row>
           </a-tab-pane>
-          <a-tab-pane tab="访问量" key="2">
-            <a-row>
-              <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
-                <bar title="销售额趋势" />
-              </a-col>
-              <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-                <rank-list title="门店销售排行榜" :list="rankList"/>
-              </a-col>
-            </a-row>
-          </a-tab-pane>
+
         </a-tabs>
       </div>
     </a-card>
@@ -103,17 +94,19 @@
       <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
         <a-card :loading="loading" :bordered="false" title="实时访问统计" :style="{ marginTop: '24px' }">
           <a-dropdown :trigger="['click']" placement="bottomLeft" slot="extra">
-            <a class="ant-dropdown-link" href="#">
+<!--            <a class="ant-dropdown-link" href="#">
               <a-icon type="ellipsis" />
-            </a>
-            <a-menu slot="overlay">
+            </a>-->
+
+<!--            <a-menu slot="overlay">
               <a-menu-item>
                 <a href="javascript:;">操作一</a>
               </a-menu-item>
               <a-menu-item>
                 <a href="javascript:;">操作二</a>
               </a-menu-item>
-            </a-menu>
+            </a-menu>-->
+
           </a-dropdown>
           <div style="height: 105px">
             <a-row>
@@ -139,26 +132,31 @@
           </div>
         </a-card>
       </a-col>
+
       <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-        <a-card :loading="loading" :bordered="false" title="销售额类别占比" :style="{ marginTop: '24px' }">
+        <a-card :loading="loading" :bordered="false" title="申请情况" :style="{ marginTop: '24px' }">
           <a-dropdown :trigger="['click']" placement="bottomLeft" slot="extra">
             <a class="ant-dropdown-link" href="#">
               <a-icon type="ellipsis" />
             </a>
+
             <a-menu slot="overlay">
               <a-menu-item>
-                <a href="javascript:;">操作一</a>
+                <a href="javascript:;">查看详情</a>
               </a-menu-item>
-              <a-menu-item>
+<!--              <a-menu-item>
                 <a href="javascript:;">操作二</a>
-              </a-menu-item>
+              </a-menu-item>-->
             </a-menu>
+
           </a-dropdown>
-          <p>card content</p>
-          <p>card content</p>
-          <p>card content</p>
+          <p>励志奖学金申请次数</p>
+          <p>助学金申请次数</p>
+          <p>国家奖学金申请次数</p>
+          <p>助学贷款申请次数</p>
         </a-card>
       </a-col>
+
     </a-row>
   </div>
 </template>
@@ -170,16 +168,16 @@
   import MiniArea from '@/components/chart/MiniArea'
   import MiniBar from '@/components/chart/MiniBar'
   import MiniProgress from '@/components/chart/MiniProgress'
-  import RankList from '@/components/chart/RankList'
+  import RankTimeList from '@/components/chart/RankTimeList'
   import Bar from '@/components/chart/Bar'
   import Trend from '@/components/Trend'
   import {getLoginfo} from '@/api/api.js'
 
-  const rankList = []
+  const rankTimeList = []
   for (let i = 0; i < 7; i++) {
-    rankList.push({
-      name: '白鹭岛 ' + (i+1) + ' 号店',
-      total: 1234.56 - i * 100
+    rankTimeList.push({
+      name: '申请励志奖学金的时间快到了，请同学尽快做好申请准备，第 ' + (i+1) + ' 篇测试文章',
+      time: '2019 年 10 月 '+i +' 日'
     })
   }
 
@@ -192,14 +190,14 @@
       MiniArea,
       MiniBar,
       MiniProgress,
-      RankList,
+      RankTimeList,
       Bar,
       Trend
     },
     data() {
       return {
         loading: true,
-        rankList,
+        rankTimeList,
         loginfo:{},
       }
     },

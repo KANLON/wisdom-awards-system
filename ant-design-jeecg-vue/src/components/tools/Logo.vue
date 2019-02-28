@@ -13,7 +13,7 @@
     props: {
       title: {
         type: String,
-        default: 'Jeecg-Boot Pro',
+        default: 'Wisdom-Awards',
         required: false
       },
       showTitle: {

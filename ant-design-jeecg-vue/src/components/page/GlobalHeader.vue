@@ -12,7 +12,7 @@
         class="trigger"
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
         @click.native="toggle"/>
-      <span>欢迎进入 Jeecg-Boot 企业级快速开发平台</span>
+      <span>欢迎进入 智慧奖助贷系统</span>
       <user-menu></user-menu>
     </div>
     <div v-else :class="['top-nav-header-index', theme]">

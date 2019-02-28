@@ -293,4 +293,11 @@ public class JeecgDemoController {
 
 	// ================================================================================================================
 
+
+	@GetMapping(value = "/hello")
+	public Result<String> hello(){
+		Result<String> result= new Result<>();
+		result.setResult("hello world!");
+		return result;
+	}
 }
