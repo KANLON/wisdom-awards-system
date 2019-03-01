@@ -81,7 +81,7 @@
                 <!--<bar title="销售额排行" />-->
               <!--</a-col>-->
               <a-col :xl="24" :lg="24" :md="24" :sm="24" :xs="24">
-                <rank-list :list="rankTimeList"/>
+                <rank-time-list :list="rankTimeList"/>
               </a-col>
             </a-row>
           </a-tab-pane>

@@ -15,8 +15,10 @@
       <span>欢迎进入 智慧奖助贷系统</span>
       <user-menu></user-menu>
     </div>
+
     <div v-else :class="['top-nav-header-index', theme]">
       <div class="header-index-wide">
+
         <div class="header-index-left">
           <logo class="top-nav-header" :show-title="device !== 'mobile'" />
           <s-menu
@@ -31,6 +33,7 @@
             :type="collapsed ? 'menu-fold' : 'menu-unfold'"
             @click.native="toggle"></a-icon>
         </div>
+
         <user-menu class="header-index-right"></user-menu>
       </div>
     </div>
