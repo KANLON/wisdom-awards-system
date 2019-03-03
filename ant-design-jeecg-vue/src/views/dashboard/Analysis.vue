@@ -111,19 +111,19 @@
           <div style="height: 105px">
             <a-row>
               <a-col :span="8">
-                <div class="head-info" :class="center && 'center'">
+                <div class="head-info">
                   <span>今日IP</span>
                   <p><a>{{ loginfo.todayIp }}</a></p>
                 </div>
               </a-col>
               <a-col :span="8">
-                <div class="head-info" :class="center && 'center'">
+                <div class="head-info">
                   <span>今日访问</span>
                   <p><a>{{ loginfo.todayVisitCount }}</a></p>
                 </div>
               </a-col>
               <a-col :span="8">
-                <div class="head-info" :class="center && 'center'">
+                <div class="head-info" >
                   <span>访问总览</span>
                   <p><a>{{ loginfo.totalVisitCount }}</a></p>
                 </div>
@@ -240,11 +240,6 @@
     text-align: left;
     padding: 0 32px 0 0;
     min-width: 125px;
-
-    &.center {
-      text-align: center;
-      padding: 0 32px;
-    }
 
     span {
       color: rgba(0, 0, 0, .45);
