@@ -133,49 +133,19 @@ export const asyncRouterMap = [
         name: 'list',
         component: PageView,
         redirect: '/list/query-list',
-        meta: { title: '列表页', icon: 'table', permission: [ 'table' ] },
+        meta: { title: '申请情况', icon: 'table', permission: [ 'table' ] },
         children: [
           {
             path: '/list/query-list',
             name: 'QueryList',
             component: () => import('@/views/list/TableList'),
-            meta: { title: '查询表格', permission: [ 'table' ] }
+            meta: { title: '励志奖学金情况', permission: [ 'table' ] }
           },
           {
             path: '/list/edit-table',
             name: 'EditList',
             component: () => import('@/views/list/TableInnerEditList'),
-            meta: { title: '内联编辑表格', permission: [ 'table' ] }
-          },
-          {
-            path: '/list/user-list',
-            name: 'UserList',
-            component: () => import('@/views/list/UserList'),
-            meta: { title: '用户列表', permission: [ 'table' ] }
-          },
-          {
-            path: '/list/role-list',
-            name: 'RoleList',
-            component: () => import('@/views/list/RoleList'),
-            meta: { title: '角色列表', permission: [ 'table' ] }
-          },
-          {
-            path: '/list/permission-list',
-            name: 'PermissionList',
-            component: () => import('@/views/list/PermissionList'),
-            meta: { title: '权限列表', permission: [ 'table' ] }
-          },
-          {
-            path: '/list/basic-list',
-            name: 'BasicList',
-            component: () => import('@/views/list/StandardList'),
-            meta: { title: '标准列表', permission: [ 'table' ] }
-          },
-          {
-            path: '/list/card',
-            name: 'CardList',
-            component: () => import('@/views/list/CardList'),
-            meta: { title: '卡片列表', permission: [ 'table' ] }
+            meta: { title: '助学金情况', permission: [ 'table' ] }
           },
           {
             path: '/list/search',

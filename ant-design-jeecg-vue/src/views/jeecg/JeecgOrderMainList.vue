@@ -113,13 +113,11 @@
             customRender:function (t,r,index) {
               return parseInt(index)+1;
             }
-          },
-		  {
+          },{
             title: '订单号',
             align:"center",
             dataIndex: 'orderCode'
-          },
-		  {
+          },{
             title: '订单类型',
             align:"center",
             dataIndex: 'ctype',
@@ -132,18 +130,15 @@
               }
               return re;
             }
-          },
-		  {
+          },{
             title: '订单日期',
             align:"center",
             dataIndex: 'orderDate'
-          },
-		  {
+          },{
             title: '订单金额',
             align:"center",
             dataIndex: 'orderMoney'
-          },
-		  {
+          },{
             title: '订单备注',
             align:"center",
             dataIndex: 'content'
