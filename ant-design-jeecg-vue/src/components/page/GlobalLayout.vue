@@ -1,3 +1,74 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <template>
   <a-layout class="layout" :class="[device]">
 
@@ -69,7 +140,7 @@
       </a-layout-footer>
     </a-layout>
 
-    <setting-drawer></setting-drawer>
+   <!-- <setting-drawer></setting-drawer>-->
   </a-layout>
 </template>
 

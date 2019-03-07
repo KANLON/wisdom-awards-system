@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 package org.jeecg;
 
 import java.util.List;
@@ -13,7 +28,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class SampleTest {
 
@@ -22,7 +37,7 @@ public class SampleTest {
 	@Resource
 	private IJeecgDemoService jeecgDemoService;
 
-	@Test
+	//@Test
 	public void testSelect() {
 		System.out.println(("----- selectAll method test ------"));
 		List<JeecgDemo> userList = jeecgDemoMapper.selectList(null);
@@ -30,7 +45,7 @@ public class SampleTest {
 		userList.forEach(System.out::println);
 	}
 
-	@Test
+	//@Test
 	public void testXmlSql() {
 		System.out.println(("----- selectAll method test ------"));
 		List<JeecgDemo> userList = jeecgDemoMapper.getDemoByName("Sandy12");
@@ -40,7 +55,7 @@ public class SampleTest {
 	/**
 	 * 测试事务
 	 */
-	@Test
+	//@Test
 	public void testTran() {
 		jeecgDemoService.testTran();
 	}

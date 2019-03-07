@@ -1,3 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <template>
   <!-- , width: fixedHeader ? `calc(100% - ${sidebarOpened ? 256 : 80}px)` : '100%'  -->
   <a-layout-header v-if="!headerBarFixed" :class="[fixedHeader && 'ant-header-fixedHeader', sidebarOpened ? 'ant-header-side-opened' : 'ant-header-side-closed', ]" :style="{ padding: '0' }">
@@ -12,11 +26,13 @@
         class="trigger"
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
         @click.native="toggle"/>
-      <span>欢迎进入 Jeecg-Boot 企业级快速开发平台</span>
+      <span>欢迎进入 智慧奖助贷系统</span>
       <user-menu></user-menu>
     </div>
+
     <div v-else :class="['top-nav-header-index', theme]">
       <div class="header-index-wide">
+
         <div class="header-index-left">
           <logo class="top-nav-header" :show-title="device !== 'mobile'" />
           <s-menu
@@ -31,6 +47,7 @@
             :type="collapsed ? 'menu-fold' : 'menu-unfold'"
             @click.native="toggle"></a-icon>
         </div>
+
         <user-menu class="header-index-right"></user-menu>
       </div>
     </div>

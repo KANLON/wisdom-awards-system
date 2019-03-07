@@ -1,3 +1,51 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 package org.jeecg.config;
 
 import java.util.HashMap;
@@ -46,6 +94,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/sys/common/view/**", "anon");//图片预览不限制token
 		filterChainDefinitionMap.put("/api/auth/logout", "anon");//退出登录
 		filterChainDefinitionMap.put("/auth/2step-code", "anon");//退出登录
+
 		
 		filterChainDefinitionMap.put("/**.js", "anon");
 		filterChainDefinitionMap.put("/**.css", "anon");

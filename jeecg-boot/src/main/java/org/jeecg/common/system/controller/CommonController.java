@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 package org.jeecg.common.system.controller;
 
 import java.io.BufferedInputStream;
@@ -13,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.util.MyClassLoader;
 import org.jeecg.modules.system.entity.SysUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.AntPathMatcher;
@@ -98,6 +114,10 @@ public class CommonController {
 			response.setContentType("image/jpeg;charset=utf-8");
 			String localPath = uploadpath;
 			String imgurl = localPath + File.separator + imgPath;
+			//如果用户头像不存在，使用默认的头像地址
+			if(!new File(imgurl).exists()){
+				imgurl= MyClassLoader.getAppPath(CommonController.class)+"/static/default-picture/default-user-icon.jpg";
+			}
 			inputStream = new BufferedInputStream(new FileInputStream(imgurl));
 			outputStream = response.getOutputStream();
 			byte[] buf = new byte[1024];

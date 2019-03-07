@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <template>
   <div class="logo">
     <router-link :to="{name:'dashboard'}">
@@ -13,7 +28,7 @@
     props: {
       title: {
         type: String,
-        default: 'Jeecg-Boot Pro',
+        default: 'Wisdom-Awards',
         required: false
       },
       showTitle: {

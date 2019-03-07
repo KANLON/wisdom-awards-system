@@ -1,3 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <template>
   <div class="main user-layout-register">
     <h3><span>注册</span></h3>
@@ -33,7 +68,7 @@
         <a-input size="large" type="password" autocomplete="false" placeholder="确认密码"></a-input>
       </a-form-item>
 
-      <a-form-item
+     <!-- <a-form-item
         fieldDecoratorId="mobile"
         :fieldDecoratorOptions="{rules: [{ required: true, message: '请输入正确的手机号', pattern: /^1[3456789]\d{9}$/ }, { validator: this.handlePhoneCheck } ], validateTrigger: ['change', 'blur'] }">
         <a-input size="large" placeholder="11 位手机号">
@@ -42,7 +77,8 @@
             <a-select-option value="+87">+87</a-select-option>
           </a-select>
         </a-input>
-      </a-form-item>
+      </a-form-item>-->
+
       <!--<a-input-group size="large" compact>
             <a-select style="width: 20%" size="large" defaultValue="+86">
               <a-select-option value="+86">+86</a-select-option>

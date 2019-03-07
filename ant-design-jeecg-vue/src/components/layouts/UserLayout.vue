@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <template>
   <div id="userLayout" :class="['user-layout-wrapper', device]">
     <div class="container">
@@ -5,11 +12,11 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.svg" class="logo" alt="logo">
-            <span class="title">Jeecg Boot</span>
+            <span class="title">智慧奖勤助系统</span>
           </a>
         </div>
         <div class="desc">
-          Jeecg Boot 是中国最具影响力的 企业级 快速开发平台
+          该系统旨在帮助高校轻松管理奖助贷管理与学生申请问题！
         </div>
       </div>
 
@@ -17,12 +24,12 @@
 
       <div class="footer">
         <div class="links">
-          <a href="_self">帮助</a>
-          <a href="_self">隐私</a>
-          <a href="_self">条款</a>
+          <a href="https://github.com/KANLON/wisdom-awards-system">帮助</a>
+          <!--<a href="_self">隐私</a>-->
+          <!--<a href="_self">条款</a>-->
         </div>
         <div class="copyright">
-          Copyright &copy; 2019 <a href="http://www.jeecg.org" target="_blank">JEECG开源社区</a> 出品
+          Copyright &copy; 2019 <a href="https://github.com/KANLON/wisdom-awards-system" target="_blank">开源地址</a>
         </div>
       </div>
     </div>
