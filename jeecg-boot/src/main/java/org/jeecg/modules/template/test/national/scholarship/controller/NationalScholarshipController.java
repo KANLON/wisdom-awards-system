@@ -3,6 +3,7 @@ package org.jeecg.modules.template.test.national.scholarship.controller;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.util.oConvertUtils;
@@ -74,6 +75,10 @@ public class NationalScholarshipController {
 	public Result<NationalScholarship> add(@RequestBody NationalScholarship nationalScholarship) {
 		Result<NationalScholarship> result = new Result<NationalScholarship>();
 		try {
+			Date date  = new Date();
+			nationalScholarship.setCtime(date);
+			nationalScholarship.setMtime(date);
+			nationalScholarship.setDr(0);
 			nationalScholarshipService.save(nationalScholarship);
 			result.success("添加成功！");
 		} catch (Exception e) {

@@ -7,13 +7,13 @@
         <a-row :gutter="24">
 
           <a-col :span="6">
-            <a-form-item label="正式姓名">
-              <a-input placeholder="请输入正式姓名" v-model="queryParam.baseRealName"></a-input>
+            <a-form-item label="姓名">
+              <a-input placeholder="请输入姓名" v-model="queryParam.baseRealName"></a-input>
             </a-form-item>
           </a-col>
           <a-col :span="6">
-            <a-form-item label="基本情况—性别，0表示女，1表示男">
-              <a-input placeholder="请输入基本情况—性别，0表示女，1表示男" v-model="queryParam.baseSex"></a-input>
+            <a-form-item label="性别，0表示女，1表示男">
+              <a-input placeholder="性别，0表示女，1表示男" v-model="queryParam.baseSex"></a-input>
             </a-form-item>
           </a-col>
 
@@ -102,7 +102,7 @@
         // 表头
         columns: [
           {
-            title: '#',
+            title: 'id',
             dataIndex: '',
             key:'rowIndex',
             width:60,
@@ -112,17 +112,17 @@
             }
           },
 		  {
-            title: '正式姓名',
+            title: '姓名',
             align:"center",
             dataIndex: 'baseRealName'
           },
 		  {
-            title: '基本情况—性别，0表示女，1表示男',
+            title: '性别，0表示女，1表示男',
             align:"center",
             dataIndex: 'baseSex'
           },
 		  {
-            title: '基本情况出生年月',
+            title: '出生年月',
             align:"center",
             dataIndex: 'baseBirthMonth'
           },
@@ -137,7 +137,7 @@
             dataIndex: 'baseNation'
           },
 		  {
-            title: '基本情况-入学时间',
+            title: '入学时间',
             align:"center",
             dataIndex: 'baseComeSchoolDay'
           },
@@ -172,12 +172,12 @@
             dataIndex: 'stuTotalNumber'
           },
 		  {
-            title: '学习情况-是否有综合考评，1表示有，0表示没有',
+            title: '是否有综合考评，1表示有，0表示没有',
             align:"center",
             dataIndex: 'stuIsHaveEvaluation'
           },
 		  {
-            title: '学习情况-综合考评排名',
+            title: '综合考评排名',
             align:"center",
             dataIndex: 'stuEvaluationRank'
           },
@@ -206,11 +206,6 @@
             align:"center",
             dataIndex: 'mtime'
           },
-		  {
-            title: '是否有效,标记删除',
-            align:"center",
-            dataIndex: 'dr'
-          },
           {
             title: '操作',
             dataIndex: 'action',
@@ -233,7 +228,7 @@
           total: 0
         },
         isorter:{
-          column: 'createTime',
+          column: 'ctime',
           order: 'desc',
         },
         loading:false,

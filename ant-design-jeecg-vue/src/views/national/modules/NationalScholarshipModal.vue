@@ -14,20 +14,20 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="正式姓名">
-          <a-input placeholder="请输入正式姓名" v-decorator="['baseRealName', validatorRules.baseRealName ]" />
+          label="姓名">
+          <a-input placeholder="姓名" v-decorator="['baseRealName', validatorRules.baseRealName ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="基本情况—性别，0表示女，1表示男">
-          <a-input placeholder="请输入基本情况—性别，0表示女，1表示男" v-decorator="['baseSex', validatorRules.baseSex ]" />
+          label="性别，0表示女，1表示男">
+          <a-input placeholder="请输入性别，0表示女，1表示男" v-decorator="['baseSex', validatorRules.baseSex ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           label="基本情况出生年月">
-          <a-input placeholder="请输入基本情况出生年月" v-decorator="['baseBirthMonth', validatorRules.baseBirthMonth ]" />
+          <a-input placeholder="请输入出生年月" v-decorator="['baseBirthMonth', validatorRules.baseBirthMonth ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -44,8 +44,8 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="基本情况-入学时间">
-          <a-input placeholder="请输入基本情况-入学时间" v-decorator="['baseComeSchoolDay', validatorRules.baseComeSchoolDay ]" />
+          label="入学时间">
+          <a-input placeholder="请输入入学时间" v-decorator="['baseComeSchoolDay', validatorRules.baseComeSchoolDay ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -86,13 +86,13 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="学习情况-是否有综合考评，1表示有，0表示没有">
-          <a-input placeholder="请输入学习情况-是否有综合考评，1表示有，0表示没有" v-decorator="['stuIsHaveEvaluation', validatorRules.stuIsHaveEvaluation ]" />
+          label="是否有综合考评，1表示有，0表示没有">
+          <a-input placeholder="请输入是否有综合考评，1表示有，0表示没有" v-decorator="['stuIsHaveEvaluation', validatorRules.stuIsHaveEvaluation ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="学习情况-综合考评排名">
+          label="综合考评排名">
           <a-input-number v-decorator="[ 'stuEvaluationRank', validatorRules.stuEvaluationRank ]" />
         </a-form-item>
         <a-form-item
@@ -113,7 +113,7 @@
           label="院（系）意见">
           <a-input placeholder="请输入院（系）意见" v-decorator="['departmentOpinion', validatorRules.departmentOpinion ]" />
         </a-form-item>
-        <a-form-item
+<!--        <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           label="创建时间">
@@ -130,7 +130,7 @@
           :wrapperCol="wrapperCol"
           label="是否有效,标记删除">
           <a-input-number v-decorator="[ 'dr', validatorRules.dr ]" />
-        </a-form-item>
+        </a-form-item>-->
 		
       </a-form>
     </a-spin>
@@ -162,24 +162,24 @@
         form: this.$form.createForm(this),
         validatorRules:{
         baseRealName:{rules: [{ required: true, message: '请输入正式姓名!' }]},
-        baseSex:{rules: [{ required: true, message: '请输入基本情况—性别，0表示女，1表示男!' }]},
-        baseBirthMonth:{rules: [{ required: true, message: '请输入基本情况出生年月!' }]},
+        baseSex:{rules: [{ required: true, message: '请输入性别，0表示女，1表示男!' }]},
+        baseBirthMonth:{rules: [{ required: true, message: '请输入出生年月!' }]},
         basePolitical:{rules: [{ required: true, message: '请输入政治面貌!' }]},
-        baseComeSchoolDay:{rules: [{ required: true, message: '请输入基本情况-入学时间!' }]},
+        baseComeSchoolDay:{rules: [{ required: true, message: '请输入入学时间!' }]},
         baseMajor:{rules: [{ required: true, message: '请输入专业!' }]},
         baseEducationalSystem:{rules: [{ required: true, message: '请输入学制!' }]},
         basePhone:{rules: [{ required: true, message: '请输入联系电话!' }]},
         baseIdCardNumber:{rules: [{ required: true, message: '请输入身份证号!' }]},
         stuMarkRank:{rules: [{ required: true, message: '请输入成绩排名!' }]},
         stuTotalNumber:{rules: [{ required: true, message: '请输入总人数!' }]},
-        stuIsHaveEvaluation:{rules: [{ required: true, message: '请输入学习情况-是否有综合考评，1表示有，0表示没有!' }]},
+        stuIsHaveEvaluation:{rules: [{ required: true, message: '请输入是否有综合考评，1表示有，0表示没有!' }]},
         stuEvaluationRank:{rules: [{ required: true, message: '请输入学习情况-综合考评排名!' }]},
         applicationReasons:{rules: [{ required: true, message: '请输入申请理由（200字）!' }]},
         recommendReasons:{rules: [{ required: true, message: '请输入推荐理由（100字）!' }]},
         departmentOpinion:{rules: [{ required: true, message: '请输入院（系）意见!' }]},
-        ctime:{rules: [{ required: true, message: '请输入创建时间!' }]},
-        mtime:{rules: [{ required: true, message: '请输入修改时间!' }]},
-        dr:{rules: [{ required: true, message: '请输入是否有效,标记删除!' }]},
+        ctime:{rules: [{ required: false, message: '请输入创建时间!' }]},
+        mtime:{rules: [{ required: false, message: '请输入修改时间!' }]},
+        dr:{rules: [{ required: false, message: '请输入是否有效,标记删除!' }]},
         },
         url: {
           add: "/national.scholarship/nationalScholarship/add",
@@ -198,7 +198,7 @@
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model,'baseRealName','baseSex','baseBirthMonth','basePolitical','baseNation','baseComeSchoolDay','baseMajor','baseEducationalSystem','basePhone','baseIdCardNumber','stuMarkRank','stuTotalNumber','stuIsHaveEvaluation','stuEvaluationRank','applicationReasons','recommendReasons','departmentOpinion','ctime','mtime','dr'))
+          this.form.setFieldsValue(pick(this.model,'baseRealName','baseSex','baseBirthMonth','basePolitical','baseNation','baseComeSchoolDay','baseMajor','baseEducationalSystem','basePhone','baseIdCardNumber','stuMarkRank','stuTotalNumber','stuIsHaveEvaluation','stuEvaluationRank','applicationReasons','recommendReasons','departmentOpinion'))
 		  //时间格式化
         });
 
