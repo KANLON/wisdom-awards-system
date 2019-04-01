@@ -14,20 +14,14 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="正式姓名">
-          <a-input placeholder="请输入正式姓名" v-decorator="['baseRealName', validatorRules.baseRealName ]" />
+          label="姓名">
+          <a-input placeholder="请输入姓名" v-decorator="['baseRealName', validatorRules.baseRealName ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="基本情况—性别，0表示女，1表示男">
-          <a-input placeholder="请输入基本情况—性别，0表示女，1表示男" v-decorator="['baseSex', validatorRules.baseSex ]" />
-        </a-form-item>
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label="基本情况出生年月">
-          <a-input placeholder="请输入基本情况出生年月" v-decorator="['baseBirthMonth', validatorRules.baseBirthMonth ]" />
+          label="性别，0表示女，1表示男">
+          <a-input placeholder="请输入性别，0表示女，1表示男" v-decorator="['baseSex', validatorRules.baseSex ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -39,25 +33,25 @@
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           label="民族">
-          <a-input placeholder="请输入民族" v-decorator="['baseNation', {}]" />
+          <a-input placeholder="请输入民族" v-decorator="['baseNation', validatorRules.baseNation ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="基本情况-入学时间">
-          <a-input placeholder="请输入基本情况-入学时间" v-decorator="['baseComeSchoolDay', validatorRules.baseComeSchoolDay ]" />
+          label="入学年月">
+          <a-input placeholder="请输入入学年月" v-decorator="['baseComeSchoolDay', validatorRules.baseComeSchoolDay ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="专业">
-          <a-input placeholder="请输入专业" v-decorator="['baseMajor', validatorRules.baseMajor ]" />
+          label="学号">
+          <a-input placeholder="请输入学号" v-decorator="['baseStudentId', validatorRules.baseStudentId ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="学制">
-          <a-input placeholder="请输入学制" v-decorator="['baseEducationalSystem', validatorRules.baseEducationalSystem ]" />
+          label="班级">
+          <a-input placeholder="请输入班级" v-decorator="['baseClass', validatorRules.baseClass ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -74,14 +68,26 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="成绩排名">
-          <a-input-number v-decorator="[ 'stuMarkRank', validatorRules.stuMarkRank ]" />
+          label="贫困等级">
+          <a-input placeholder="请输入贫困等级" v-decorator="['basePoorGrade', validatorRules.basePoorGrade ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           label="总人数">
           <a-input-number v-decorator="[ 'stuTotalNumber', validatorRules.stuTotalNumber ]" />
+        </a-form-item>
+        <a-form-item
+          :labelCol="labelCol"
+          :wrapperCol="wrapperCol"
+          label="总人数的统计种类">
+          <a-input placeholder="请输入总人数的统计种类" v-decorator="['stuSumType', validatorRules.stuSumType ]" />
+        </a-form-item>
+        <a-form-item
+          :labelCol="labelCol"
+          :wrapperCol="wrapperCol"
+          label="成绩排名">
+          <a-input-number v-decorator="[ 'stuMarkRank', validatorRules.stuMarkRank ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -98,20 +104,8 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="申请理由（200字）">
-          <a-input placeholder="请输入申请理由（200字）" v-decorator="['applicationReasons', validatorRules.applicationReasons ]" />
-        </a-form-item>
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label="推荐理由（100字）">
-          <a-input placeholder="请输入推荐理由（100字）" v-decorator="['recommendReasons', validatorRules.recommendReasons ]" />
-        </a-form-item>
-        <a-form-item
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          label="院（系）意见">
-          <a-input placeholder="请输入院（系）意见" v-decorator="['departmentOpinion', validatorRules.departmentOpinion ]" />
+          label="申请理由（150字）">
+          <a-input placeholder="请输入申请理由（150字）" v-decorator="['applicationReasons', validatorRules.applicationReasons ]" />
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -143,7 +137,7 @@
   import moment from "moment"
 
   export default {
-    name: "NationalScholarshipModal",
+    name: "EncouragementScholarshipModal",
     data () {
       return {
         title:"操作",
@@ -161,29 +155,29 @@
         confirmLoading: false,
         form: this.$form.createForm(this),
         validatorRules:{
-        baseRealName:{rules: [{ required: true, message: '请输入正式姓名!' }]},
-        baseSex:{rules: [{ required: true, message: '请输入基本情况—性别，0表示女，1表示男!' }]},
-        baseBirthMonth:{rules: [{ required: true, message: '请输入基本情况出生年月!' }]},
+        baseRealName:{rules: [{ required: true, message: '请输入姓名!' }]},
+        baseSex:{rules: [{ required: true, message: '请输入性别，0表示女，1表示男!' }]},
         basePolitical:{rules: [{ required: true, message: '请输入政治面貌!' }]},
-        baseComeSchoolDay:{rules: [{ required: true, message: '请输入基本情况-入学时间!' }]},
-        baseMajor:{rules: [{ required: true, message: '请输入专业!' }]},
-        baseEducationalSystem:{rules: [{ required: true, message: '请输入学制!' }]},
+        baseNation:{rules: [{ required: true, message: '请输入民族!' }]},
+        baseComeSchoolDay:{rules: [{ required: true, message: '请输入入学年月!' }]},
+        baseStudentId:{rules: [{ required: true, message: '请输入学号!' }]},
+        baseClass:{rules: [{ required: true, message: '请输入班级!' }]},
         basePhone:{rules: [{ required: true, message: '请输入联系电话!' }]},
         baseIdCardNumber:{rules: [{ required: true, message: '请输入身份证号!' }]},
-        stuMarkRank:{rules: [{ required: true, message: '请输入成绩排名!' }]},
+        basePoorGrade:{rules: [{ required: true, message: '请输入贫困等级!' }]},
         stuTotalNumber:{rules: [{ required: true, message: '请输入总人数!' }]},
+        stuSumType:{rules: [{ required: true, message: '请输入总人数的统计种类!' }]},
+        stuMarkRank:{rules: [{ required: true, message: '请输入成绩排名!' }]},
         stuIsHaveEvaluation:{rules: [{ required: true, message: '请输入学习情况-是否有综合考评，1表示有，0表示没有!' }]},
         stuEvaluationRank:{rules: [{ required: true, message: '请输入学习情况-综合考评排名!' }]},
-        applicationReasons:{rules: [{ required: true, message: '请输入申请理由（200字）!' }]},
-        recommendReasons:{rules: [{ required: true, message: '请输入推荐理由（100字）!' }]},
-        departmentOpinion:{rules: [{ required: true, message: '请输入院（系）意见!' }]},
+        applicationReasons:{rules: [{ required: true, message: '请输入申请理由（150字）!' }]},
         ctime:{rules: [{ required: true, message: '请输入创建时间!' }]},
         mtime:{rules: [{ required: true, message: '请输入修改时间!' }]},
         dr:{rules: [{ required: true, message: '请输入是否有效,标记删除!' }]},
         },
         url: {
-          add: "/national.scholarship/nationalScholarship/add",
-          edit: "/national.scholarship/nationalScholarship/edit",
+          add: "/encouragement.scholarship/encouragementScholarship/add",
+          edit: "/encouragement.scholarship/encouragementScholarship/edit",
         },
       }
     },
@@ -198,8 +192,7 @@
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model,'baseRealName','baseSex','baseBirthMonth','basePolitical','baseNation','baseComeSchoolDay','baseMajor','baseEducationalSystem','basePhone','baseIdCardNumber','stuMarkRank','stuTotalNumber','stuIsHaveEvaluation','stuEvaluationRank','applicationReasons','recommendReasons','departmentOpinion','ctime','mtime','dr'))
-		  //时间格式化
+          this.form.setFieldsValue(pick(this.model,'baseRealName','baseSex','basePolitical','baseNation','baseComeSchoolDay','baseStudentId','baseClass','basePhone','baseIdCardNumber','basePoorGrade','stuTotalNumber','stuSumType','stuMarkRank','stuIsHaveEvaluation','stuEvaluationRank','applicationReasons','ctime','mtime','dr'))
         });
 
       },

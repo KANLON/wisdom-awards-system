@@ -1,59 +1,60 @@
-package org.jeecg.modules.template.test.national.scholarship.entity;
+package org.jeecg.modules.template.encouragement.scholarship.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- *  国家奖学金信息
- * @author jeecg-boot
- * @since   2019-03-29
- * @version V1.0
+ * @Description: 国家励志奖学金信息
+ * @author： jeecg-boot
+ * @date：   2019-04-01
+ * @version： V1.0
  */
 @Data
-@TableName("wisdom_national_scholarship")
-public class NationalScholarship implements Serializable {
+@TableName("wisdom_encouragement_scholarship")
+public class EncouragementScholarship implements Serializable {
     private static final long serialVersionUID = 1L;
     
 	/**uuid*/
 	@TableId(type = IdType.UUID)
 	private java.lang.String id;
-	/**正式姓名*/
+	/**姓名*/
 	private java.lang.String baseRealName;
-	/**基本情况—性别，0表示女，1表示男*/
+	/**性别，0表示女，1表示男*/
 	private java.lang.Integer baseSex;
-	/**基本情况出生年月*/
-	private java.lang.String baseBirthMonth;
 	/**政治面貌*/
 	private java.lang.String basePolitical;
 	/**民族*/
 	private java.lang.String baseNation;
-	/**基本情况-入学时间*/
+	/**入学年月*/
 	private java.lang.String baseComeSchoolDay;
-	/**专业*/
-	private java.lang.String baseMajor;
-	/**学制*/
-	private java.lang.Integer baseEducationalSystem;
+	/**学号*/
+	private java.lang.String baseStudentId;
+	/**班级*/
+	private java.lang.String baseClass;
 	/**联系电话*/
 	private java.lang.String basePhone;
 	/**身份证号*/
 	private java.lang.String baseIdCardNumber;
-	/**成绩排名*/
-	private java.lang.Integer stuMarkRank;
+	/**贫困等级*/
+	private java.lang.String basePoorGrade;
 	/**总人数*/
 	private java.lang.Integer stuTotalNumber;
+	/**总人数的统计种类*/
+	private java.lang.String stuSumType;
+	/**成绩排名*/
+	private java.lang.Integer stuMarkRank;
 	/**学习情况-是否有综合考评，1表示有，0表示没有*/
 	private java.lang.Integer stuIsHaveEvaluation;
 	/**学习情况-综合考评排名*/
 	private java.lang.Integer stuEvaluationRank;
-	/**申请理由（200字）*/
+	/**申请理由（150字）*/
 	private java.lang.String applicationReasons;
-	/**推荐理由（100字）*/
-	private java.lang.String recommendReasons;
-	/**院（系）意见*/
-	private java.lang.String departmentOpinion;
 	/**创建时间*/
 	private java.util.Date ctime;
 	/**修改时间*/

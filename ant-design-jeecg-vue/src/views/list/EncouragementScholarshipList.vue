@@ -13,7 +13,7 @@
           </a-col>
           <a-col :span="6">
             <a-form-item label="性别，0表示女，1表示男">
-              <a-input placeholder="性别，0表示女，1表示男" v-model="queryParam.baseSex"></a-input>
+              <a-input placeholder="请输入性别，0表示女，1表示男" v-model="queryParam.baseSex"></a-input>
             </a-form-item>
           </a-col>
 
@@ -86,29 +86,29 @@
     <!-- table区域-end -->
 
     <!-- 表单区域 -->
-    <nationalScholarship-modal ref="nationalScholarshipModal" @ok="modalFormOk"></nationalScholarship-modal>
+    <encouragementScholarship-modal ref="encouragementScholarshipModal" @ok="modalFormOk"></encouragementScholarship-modal>
   </a-card>
 </template>
 
 <script>
-  import NationalScholarshipModal from './modules/NationalScholarshipModal'
+  import EncouragementScholarshipModal from './modules/EncouragementScholarshipModal'
   import { filterObj } from '@/utils/util'
   import { deleteAction, getAction } from '@/api/manage'
 
   export default {
-    name: 'NationalScholarshipList',
+    name: 'EncouragementScholarshipList',
     components: {
-      NationalScholarshipModal
+      EncouragementScholarshipModal
     },
     data() {
       return {
-        description: '国家奖学金信息管理页面',
+        description: '国家励志奖学金信息管理页面',
         // 查询条件
         queryParam: {},
         // 表头
         columns: [
           {
-            title: 'id',
+            title: '#',
             dataIndex: '',
             key: 'rowIndex',
             width: 60,
@@ -128,11 +128,6 @@
             dataIndex: 'baseSex'
           },
           {
-            title: '出生年月',
-            align: 'center',
-            dataIndex: 'baseBirthMonth'
-          },
-          {
             title: '政治面貌',
             align: 'center',
             dataIndex: 'basePolitical'
@@ -143,19 +138,19 @@
             dataIndex: 'baseNation'
           },
           {
-            title: '入学时间',
+            title: '入学年月',
             align: 'center',
             dataIndex: 'baseComeSchoolDay'
           },
           {
-            title: '专业',
+            title: '学号',
             align: 'center',
-            dataIndex: 'baseMajor'
+            dataIndex: 'baseStudentId'
           },
           {
-            title: '学制',
+            title: '班级',
             align: 'center',
-            dataIndex: 'baseEducationalSystem'
+            dataIndex: 'baseClass'
           },
           {
             title: '联系电话',
@@ -168,9 +163,9 @@
             dataIndex: 'baseIdCardNumber'
           },
           {
-            title: '成绩排名',
+            title: '贫困等级',
             align: 'center',
-            dataIndex: 'stuMarkRank'
+            dataIndex: 'basePoorGrade'
           },
           {
             title: '总人数',
@@ -178,29 +173,29 @@
             dataIndex: 'stuTotalNumber'
           },
           {
-            title: '是否有综合考评，1表示有，0表示没有',
+            title: '总人数的统计种类',
+            align: 'center',
+            dataIndex: 'stuSumType'
+          },
+          {
+            title: '成绩排名',
+            align: 'center',
+            dataIndex: 'stuMarkRank'
+          },
+          {
+            title: '学习情况-是否有综合考评，1表示有，0表示没有',
             align: 'center',
             dataIndex: 'stuIsHaveEvaluation'
           },
           {
-            title: '综合考评排名',
+            title: '学习情况-综合考评排名',
             align: 'center',
             dataIndex: 'stuEvaluationRank'
           },
           {
-            title: '申请理由（200字）',
+            title: '申请理由（150字）',
             align: 'center',
             dataIndex: 'applicationReasons'
-          },
-          {
-            title: '推荐理由（100字）',
-            align: 'center',
-            dataIndex: 'recommendReasons'
-          },
-          {
-            title: '院（系）意见',
-            align: 'center',
-            dataIndex: 'departmentOpinion'
           },
           {
             title: '创建时间',
@@ -211,6 +206,11 @@
             title: '修改时间',
             align: 'center',
             dataIndex: 'mtime'
+          },
+          {
+            title: '是否有效,标记删除',
+            align: 'center',
+            dataIndex: 'dr'
           },
           {
             title: '操作',
@@ -241,9 +241,9 @@
         selectedRowKeys: [],
         selectedRows: [],
         url: {
-          list: '/national.scholarship/nationalScholarship/list',
-          delete: '/national.scholarship/nationalScholarship/delete',
-          deleteBatch: '/national.scholarship/nationalScholarship/deleteBatch'
+          list: '/encouragement.scholarship/encouragementScholarship/list',
+          delete: '/encouragement.scholarship/encouragementScholarship/delete',
+          deleteBatch: '/encouragement.scholarship/encouragementScholarship/deleteBatch'
         }
 
       }
@@ -335,12 +335,12 @@
         })
       },
       handleEdit: function(record) {
-        this.$refs.nationalScholarshipModal.edit(record)
-        this.$refs.nationalScholarshipModal.title = '编辑'
+        this.$refs.encouragementScholarshipModal.edit(record)
+        this.$refs.encouragementScholarshipModal.title = '编辑'
       },
       handleAdd: function() {
-        this.$refs.nationalScholarshipModal.add()
-        this.$refs.nationalScholarshipModal.title = '新增'
+        this.$refs.encouragementScholarshipModal.add()
+        this.$refs.encouragementScholarshipModal.title = '新增'
       },
       handleTableChange(pagination, filters, sorter) {
         //分页、排序、筛选变化时触发
