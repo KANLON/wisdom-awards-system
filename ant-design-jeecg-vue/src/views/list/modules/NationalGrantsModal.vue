@@ -74,33 +74,38 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="总人数">
-          <a-input-number v-decorator="[ 'stuTotalNumber', validatorRules.stuTotalNumber ]"/>
+          label="学年">
+          <a-input placeholder="请输入学年" v-decorator="['studyYear', validatorRules.studyYear ]"/>
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="总人数的统计种类">
-          <a-input placeholder="请输入总人数的统计种类" v-decorator="['stuSumType', validatorRules.stuSumType ]"/>
+          label="学期">
+          <a-input placeholder="请输入学期" v-decorator="['studyTeam', validatorRules.studyTeam ]"/>
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="成绩排名">
-          <a-input-number v-decorator="[ 'stuMarkRank', validatorRules.stuMarkRank ]"/>
+          label="出生日期">
+          <a-input placeholder="请输入出生日期" v-decorator="['birthday', validatorRules.birthday ]"/>
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="学习情况-是否有综合考评，1表示有，0表示没有">
-          <a-input placeholder="请输入学习情况-是否有综合考评，1表示有，0表示没有"
-                   v-decorator="['stuIsHaveEvaluation', validatorRules.stuIsHaveEvaluation ]"/>
+          label="困难等级">
+          <a-input placeholder="请输入困难等级" v-decorator="['poorLevel', validatorRules.poorLevel ]"/>
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="学习情况-综合考评排名">
-          <a-input-number v-decorator="[ 'stuEvaluationRank', validatorRules.stuEvaluationRank ]"/>
+          label="应发金额">
+          <a-input-number v-decorator="[ 'amountPayable', validatorRules.amountPayable ]"/>
+        </a-form-item>
+        <a-form-item
+          :labelCol="labelCol"
+          :wrapperCol="wrapperCol"
+          label="发放日期">
+          <a-input placeholder="请输入发放日期" v-decorator="['payDate', validatorRules.payDate ]"/>
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -139,7 +144,7 @@
   import moment from "moment"
 
   export default {
-    name: "EncouragementScholarshipModal",
+    name: "NationalGrantsModal",
     data() {
       return {
         title: "操作",
@@ -167,19 +172,20 @@
           basePhone: {rules: [{required: true, message: '请输入联系电话!'}]},
           baseIdCardNumber: {rules: [{required: true, message: '请输入身份证号!'}]},
           basePoorGrade: {rules: [{required: true, message: '请输入贫困等级!'}]},
-          stuTotalNumber: {rules: [{required: true, message: '请输入总人数!'}]},
-          stuSumType: {rules: [{required: true, message: '请输入总人数的统计种类!'}]},
-          stuMarkRank: {rules: [{required: true, message: '请输入成绩排名!'}]},
-          stuIsHaveEvaluation: {rules: [{required: true, message: '请输入学习情况-是否有综合考评，1表示有，0表示没有!'}]},
-          stuEvaluationRank: {rules: [{required: true, message: '请输入学习情况-综合考评排名!'}]},
+          studyYear: {rules: [{required: true, message: '请输入学年!'}]},
+          studyTeam: {rules: [{required: true, message: '请输入学期!'}]},
+          birthday: {rules: [{required: true, message: '请输入出生日期!'}]},
+          poorLevel: {rules: [{required: true, message: '请输入困难等级!'}]},
+          amountPayable: {rules: [{required: true, message: '请输入应发金额!'}]},
+          payDate: {rules: [{required: true, message: '请输入发放日期!'}]},
           applicationReasons: {rules: [{required: true, message: '请输入申请理由（150字）!'}]},
           ctime: {rules: [{required: true, message: '请输入创建时间!'}]},
           mtime: {rules: [{required: true, message: '请输入修改时间!'}]},
           dr: {rules: [{required: true, message: '请输入是否有效,标记删除!'}]},
         },
         url: {
-          add: "/encouragement.scholarship/encouragementScholarship/add",
-          edit: "/encouragement.scholarship/encouragementScholarship/edit",
+          add: "/national.grants/nationalGrants/add",
+          edit: "/national.grants/nationalGrants/edit",
         },
       }
     },
@@ -194,7 +200,8 @@
         this.model = Object.assign({}, record);
         this.visible = true;
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model, 'baseRealName', 'baseSex', 'basePolitical', 'baseNation', 'baseComeSchoolDay', 'baseStudentId', 'baseClass', 'basePhone', 'baseIdCardNumber', 'basePoorGrade', 'stuTotalNumber', 'stuSumType', 'stuMarkRank', 'stuIsHaveEvaluation', 'stuEvaluationRank', 'applicationReasons', 'ctime', 'mtime', 'dr'))
+          this.form.setFieldsValue(pick(this.model, 'baseRealName', 'baseSex', 'basePolitical', 'baseNation', 'baseComeSchoolDay', 'baseStudentId', 'baseClass', 'basePhone', 'baseIdCardNumber', 'basePoorGrade', 'studyYear', 'studyTeam', 'birthday', 'poorLevel', 'amountPayable', 'payDate', 'applicationReasons', 'ctime', 'mtime', 'dr'))
+          //时间格式化
         });
 
       },

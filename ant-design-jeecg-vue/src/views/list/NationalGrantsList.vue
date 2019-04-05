@@ -86,24 +86,23 @@
     <!-- table区域-end -->
 
     <!-- 表单区域 -->
-    <encouragementScholarship-modal ref="encouragementScholarshipModal"
-                                    @ok="modalFormOk"></encouragementScholarship-modal>
+    <nationalGrants-modal ref="nationalGrantsModal" @ok="modalFormOk"></nationalGrants-modal>
   </a-card>
 </template>
 
 <script>
-  import EncouragementScholarshipModal from './modules/EncouragementScholarshipModal'
+  import NationalGrantsModal from './modules/NationalGrantsModal'
   import {filterObj} from '@/utils/util'
   import {deleteAction, getAction} from '@/api/manage'
 
   export default {
-    name: 'EncouragementScholarshipList',
+    name: "NationalGrantsList",
     components: {
-      EncouragementScholarshipModal
+      NationalGrantsModal
     },
     data() {
       return {
-        description: '国家励志奖学金信息管理页面',
+        description: '国家助学金信息管理页面',
         // 查询条件
         queryParam: {},
         // 表头
@@ -113,111 +112,116 @@
             dataIndex: '',
             key: 'rowIndex',
             width: 60,
-            align: 'center',
+            align: "center",
             customRender: function (t, r, index) {
-              return parseInt(index) + 1
+              return parseInt(index) + 1;
             }
           },
           {
             title: '姓名',
-            align: 'center',
+            align: "center",
             dataIndex: 'baseRealName'
           },
           {
             title: '性别，0表示女，1表示男',
-            align: 'center',
+            align: "center",
             dataIndex: 'baseSex'
           },
           {
             title: '政治面貌',
-            align: 'center',
+            align: "center",
             dataIndex: 'basePolitical'
           },
           {
             title: '民族',
-            align: 'center',
+            align: "center",
             dataIndex: 'baseNation'
           },
           {
             title: '入学年月',
-            align: 'center',
+            align: "center",
             dataIndex: 'baseComeSchoolDay'
           },
           {
             title: '学号',
-            align: 'center',
+            align: "center",
             dataIndex: 'baseStudentId'
           },
           {
             title: '班级',
-            align: 'center',
+            align: "center",
             dataIndex: 'baseClass'
           },
           {
             title: '联系电话',
-            align: 'center',
+            align: "center",
             dataIndex: 'basePhone'
           },
           {
             title: '身份证号',
-            align: 'center',
+            align: "center",
             dataIndex: 'baseIdCardNumber'
           },
           {
             title: '贫困等级',
-            align: 'center',
+            align: "center",
             dataIndex: 'basePoorGrade'
           },
           {
-            title: '总人数',
-            align: 'center',
-            dataIndex: 'stuTotalNumber'
+            title: '学年',
+            align: "center",
+            dataIndex: 'studyYear'
           },
           {
-            title: '总人数的统计种类',
-            align: 'center',
-            dataIndex: 'stuSumType'
+            title: '学期',
+            align: "center",
+            dataIndex: 'studyTeam'
           },
           {
-            title: '成绩排名',
-            align: 'center',
-            dataIndex: 'stuMarkRank'
+            title: '出生日期',
+            align: "center",
+            dataIndex: 'birthday'
           },
           {
-            title: '学习情况-是否有综合考评，1表示有，0表示没有',
-            align: 'center',
-            dataIndex: 'stuIsHaveEvaluation'
+            title: '困难等级',
+            align: "center",
+            dataIndex: 'poorLevel'
           },
           {
-            title: '学习情况-综合考评排名',
-            align: 'center',
-            dataIndex: 'stuEvaluationRank'
+            title: '应发金额',
+            align: "center",
+            dataIndex: 'amountPayable'
+          },
+          {
+            title: '发放日期',
+            align: "center",
+            dataIndex: 'payDate'
           },
           {
             title: '申请理由（150字）',
-            align: 'center',
+            align: "center",
             dataIndex: 'applicationReasons'
           },
           {
             title: '创建时间',
-            align: 'center',
+            align: "center",
             dataIndex: 'ctime'
           },
           {
             title: '修改时间',
-            align: 'center',
+            align: "center",
             dataIndex: 'mtime'
           },
           {
             title: '是否有效,标记删除',
-            align: 'center',
+            align: "center",
             dataIndex: 'dr'
           },
           {
             title: '操作',
             dataIndex: 'action',
-            align: 'center',
-            scopedSlots: {customRender: 'action'}
+            align: "center",
+            scopedSlots: {customRender: 'action'},
           }
         ],
         //数据集
@@ -228,135 +232,135 @@
           pageSize: 10,
           pageSizeOptions: ['10', '20', '30'],
           showTotal: (total, range) => {
-            return range[0] + '-' + range[1] + ' 共' + total + '条'
+            return range[0] + "-" + range[1] + " 共" + total + "条"
           },
           showQuickJumper: true,
           showSizeChanger: true,
           total: 0
         },
         isorter: {
-          column: 'ctime',
-          order: 'desc'
+          column: 'createTime',
+          order: 'desc',
         },
         loading: false,
         selectedRowKeys: [],
         selectedRows: [],
         url: {
-          list: '/encouragement.scholarship/encouragementScholarship/list',
-          delete: '/encouragement.scholarship/encouragementScholarship/delete',
-          deleteBatch: '/encouragement.scholarship/encouragementScholarship/deleteBatch'
-        }
+          list: "/national.grants/nationalGrants/list",
+          delete: "/national.grants/nationalGrants/delete",
+          deleteBatch: "/national.grants/nationalGrants/deleteBatch",
+        },
 
       }
     },
     created() {
-      this.loadData()
+      this.loadData();
     },
     methods: {
       loadData(arg) {
         //加载数据 若传入参数1则加载第一页的内容
         if (arg === 1) {
-          this.ipagination.current = 1
+          this.ipagination.current = 1;
         }
-        var params = this.getQueryParams()//查询条件
+        var params = this.getQueryParams();//查询条件
         getAction(this.url.list, params).then((res) => {
           if (res.success) {
-            this.dataSource = res.result.records
-            this.ipagination.total = res.result.total
+            this.dataSource = res.result.records;
+            this.ipagination.total = res.result.total;
           }
         })
       },
       getQueryParams() {
-        var param = Object.assign({}, this.queryParam, this.isorter)
-        param.field = this.getQueryField()
-        param.pageNo = this.ipagination.current
-        param.pageSize = this.ipagination.pageSize
-        return filterObj(param)
+        var param = Object.assign({}, this.queryParam, this.isorter);
+        param.field = this.getQueryField();
+        param.pageNo = this.ipagination.current;
+        param.pageSize = this.ipagination.pageSize;
+        return filterObj(param);
       },
       getQueryField() {
         //TODO 字段权限控制
-        var str = 'id,'
+        var str = "id,";
         for (var a = 0; a < this.columns.length; a++) {
-          str += ',' + this.columns[a].dataIndex
+          str += "," + this.columns[a].dataIndex;
         }
-        return str
+        return str;
       },
       onSelectChange(selectedRowKeys, selectionRows) {
-        this.selectedRowKeys = selectedRowKeys
-        this.selectionRows = selectionRows
+        this.selectedRowKeys = selectedRowKeys;
+        this.selectionRows = selectionRows;
       },
       onClearSelected() {
-        this.selectedRowKeys = []
-        this.selectionRows = []
+        this.selectedRowKeys = [];
+        this.selectionRows = [];
       },
       searchQuery() {
-        this.loadData(1)
+        this.loadData(1);
       },
       searchReset() {
-        var that = this
-        that.queryParam = {}
-        that.loadData(1)
+        var that = this;
+        that.queryParam = {};
+        that.loadData(1);
       },
       batchDel: function () {
         if (this.selectedRowKeys.length <= 0) {
-          this.$message.warning('请选择一条记录！')
-          return
+          this.$message.warning('请选择一条记录！');
+          return;
         } else {
-          var ids = ''
+          var ids = "";
           for (var a = 0; a < this.selectedRowKeys.length; a++) {
-            ids += this.selectedRowKeys[a] + ','
+            ids += this.selectedRowKeys[a] + ",";
           }
-          var that = this
+          var that = this;
           this.$confirm({
-            title: '确认删除',
-            content: '是否删除选中数据?',
+            title: "确认删除",
+            content: "是否删除选中数据?",
             onOk: function () {
               deleteAction(that.url.deleteBatch, {ids: ids}).then((res) => {
                 if (res.success) {
-                  that.$message.success(res.message)
-                  that.loadData()
-                  that.onClearSelected()
+                  that.$message.success(res.message);
+                  that.loadData();
+                  that.onClearSelected();
                 } else {
-                  that.$message.warning(res.message)
+                  that.$message.warning(res.message);
                 }
-              })
+              });
             }
-          })
+          });
         }
       },
       handleDelete: function (id) {
-        var that = this
+        var that = this;
         deleteAction(that.url.delete, {id: id}).then((res) => {
           if (res.success) {
-            that.$message.success(res.message)
-            that.loadData()
+            that.$message.success(res.message);
+            that.loadData();
           } else {
-            that.$message.warning(res.message)
+            that.$message.warning(res.message);
           }
-        })
+        });
       },
       handleEdit: function (record) {
-        this.$refs.encouragementScholarshipModal.edit(record)
-        this.$refs.encouragementScholarshipModal.title = '编辑'
+        this.$refs.nationalGrantsModal.edit(record);
+        this.$refs.nationalGrantsModal.title = "编辑";
       },
       handleAdd: function () {
-        this.$refs.encouragementScholarshipModal.add()
-        this.$refs.encouragementScholarshipModal.title = '新增'
+        this.$refs.nationalGrantsModal.add();
+        this.$refs.nationalGrantsModal.title = "新增";
       },
       handleTableChange(pagination, filters, sorter) {
         //分页、排序、筛选变化时触发
-        console.log(sorter)
+        console.log(sorter);
         //TODO 筛选
         if (Object.keys(sorter).length > 0) {
-          this.isorter.column = sorter.field
-          this.isorter.order = 'ascend' == sorter.order ? 'asc' : 'desc'
+          this.isorter.column = sorter.field;
+          this.isorter.order = "ascend" == sorter.order ? "asc" : "desc"
         }
-        this.ipagination = pagination
-        this.loadData()
+        this.ipagination = pagination;
+        this.loadData();
       },
       modalFormOk() {
         // 新增/修改 成功时，重载列表
-        this.loadData()
+        this.loadData();
       }
     }
   }

@@ -1,6 +1,8 @@
 
 SELECT REPLACE(UUID(),'-','') FROM demo;
 
+SELECT CONCAT(YEAR(CURRENT_DATE),'-',YEAR(CURRENT_DATE)+1)  FROM demo;
+
 
 SHOW TABLES;
 
@@ -61,8 +63,8 @@ CREATE TABLE wisdom_encouragement_scholarship(
 
 
 /*创建自定义的表，国家助学金信息表，还要修改*/
-DROP TABLE IF EXISTS wisdom_encouragement_scholarship;
-CREATE TABLE wisdom_encouragement_scholarship(
+DROP TABLE IF EXISTS wisdom_national_grants;
+CREATE TABLE wisdom_national_grants(
   id VARCHAR(32) PRIMARY KEY NOT NULL COMMENT 'uuid',
   base_real_name VARCHAR(20) NOT NULL COMMENT '姓名',
   base_sex TINYINT(1) NOT NULL DEFAULT 1 COMMENT '性别，0表示女，1表示男',
@@ -74,22 +76,23 @@ CREATE TABLE wisdom_encouragement_scholarship(
   base_phone VARCHAR(20) NOT NULL  COMMENT '联系电话',
   base_id_card_number VARCHAR(18) NOT NULL COMMENT '身份证号',
   base_poor_grade VARCHAR(10) NOT NULL DEFAULT '一般困难' COMMENT '贫困等级',
-  stu_total_number INT(5) NOT NULL COMMENT '总人数',
-  stu_sum_type VARCHAR(10) NOT NULL DEFAULT '按班级' COMMENT '总人数的统计种类',
-  stu_mark_rank INT(5) NOT NULL COMMENT '成绩排名',
-  stu_is_have_evaluation TINYINT(1) NOT NULL DEFAULT 1 COMMENT '学习情况-是否有综合考评，1表示有，0表示没有',
-  stu_evaluation_rank INT(5) NOT NULL COMMENT '学习情况-综合考评排名',
+  study_year VARCHAR(9) NOT NULL  COMMENT '学年',
+  study_team VARCHAR(5) NOT NULL DEFAULT '秋季学期' COMMENT '学期',
+  birthday VARCHAR(8) NOT NULL COMMENT '出生日期',
+  poor_level VARCHAR(4) NOT NULL DEFAULT '一般困难' COMMENT '困难等级',
+  amount_payable INT(6) NOT NULL DEFAULT 3000 COMMENT '应发金额',
+  pay_date VARCHAR(10) NOT NULL DEFAULT '未定' COMMENT '发放日期',
   application_reasons VARCHAR(255) NOT NULL COMMENT '申请理由（150字）',
   -- 由于不能同时创建两个default timestamp默认值所以将创建时间的默认值修改为'1991-01-01 00:00:00'
   ctime TIMESTAMP NOT NULL DEFAULT '1991-01-01 00:00:00' COMMENT '创建时间',
   mtime TIMESTAMP NOT NULL DEFAULT NOW() COMMENT '修改时间',
   dr INT(1) NOT NULL DEFAULT 0 COMMENT '是否有效,标记删除'
-) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='励志奖学金信息表';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='国家助学金信息表';
 
 
 
 
-
+SELECT(CONCAT(YEAR(CURRENT_DATE),'-',YEAR(CURRENT_DATE)+1))
 
 
 
