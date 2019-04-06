@@ -12,8 +12,8 @@
             </a-form-item>
           </a-col>
           <a-col :span="6">
-            <a-form-item label="性别，0表示女，1表示男">
-              <a-input placeholder="请输入性别，0表示女，1表示男" v-model="queryParam.baseSex"></a-input>
+            <a-form-item label="学号">
+              <a-input placeholder="请输入学号" v-model="queryParam.baseStudentId"></a-input>
             </a-form-item>
           </a-col>
 
@@ -86,23 +86,23 @@
     <!-- table区域-end -->
 
     <!-- 表单区域 -->
-    <nationalGrants-modal ref="nationalGrantsModal" @ok="modalFormOk"></nationalGrants-modal>
+    <studentInfo-modal ref="studentInfoModal" @ok="modalFormOk"></studentInfo-modal>
   </a-card>
 </template>
 
 <script>
-  import NationalGrantsModal from './modules/NationalGrantsModal'
+  import StudentInfoModal from './modules/StudentInfoModal'
   import {filterObj} from '@/utils/util'
   import {deleteAction, getAction} from '@/api/manage'
 
   export default {
-    name: "NationalGrantsList",
+    name: "StudentInfoList",
     components: {
-      NationalGrantsModal
+      StudentInfoModal
     },
     data() {
       return {
-        description: '国家助学金信息管理页面',
+        description: '学生基本信息管理页面',
         // 查询条件
         queryParam: {},
         // 表头
@@ -121,6 +121,16 @@
             title: '姓名',
             align: "center",
             dataIndex: 'baseRealName'
+          },
+          {
+            title: '学号',
+            align: "center",
+            dataIndex: 'baseStudentId'
+          },
+          {
+            title: '身份证号',
+            align: "center",
+            dataIndex: 'baseIdCardNumber'
           },
           {
             title: '性别，0表示女，1表示男',
@@ -143,11 +153,6 @@
             dataIndex: 'baseComeSchoolDay'
           },
           {
-            title: '学号',
-            align: "center",
-            dataIndex: 'baseStudentId'
-          },
-          {
             title: '班级',
             align: "center",
             dataIndex: 'baseClass'
@@ -158,24 +163,39 @@
             dataIndex: 'basePhone'
           },
           {
-            title: '身份证号',
-            align: "center",
-            dataIndex: 'baseIdCardNumber'
-          },
-          {
             title: '贫困等级',
             align: "center",
             dataIndex: 'basePoorGrade'
           },
           {
-            title: '学年',
+            title: '户口类型',
             align: "center",
-            dataIndex: 'studyYear'
+            dataIndex: 'baseResidence'
           },
           {
-            title: '学期',
+            title: '家庭住址',
             align: "center",
-            dataIndex: 'studyTeam'
+            dataIndex: 'baseAddress'
+          },
+          {
+            title: '宿舍地址',
+            align: "center",
+            dataIndex: 'baseDormitory'
+          },
+          {
+            title: '专业',
+            align: "center",
+            dataIndex: 'baseMajor'
+          },
+          {
+            title: '学院',
+            align: "center",
+            dataIndex: 'baseDepartment'
+          },
+          {
+            title: '学校',
+            align: "center",
+            dataIndex: 'baseSchool'
           },
           {
             title: '出生日期',
@@ -183,24 +203,14 @@
             dataIndex: 'birthday'
           },
           {
-            title: '困难等级',
+            title: '备注',
             align: "center",
-            dataIndex: 'poorLevel'
+            dataIndex: 'remark'
           },
           {
-            title: '应发金额',
+            title: '状态',
             align: "center",
-            dataIndex: 'amountPayable'
-          },
-          {
-            title: '发放日期',
-            align: "center",
-            dataIndex: 'payDate'
-          },
-          {
-            title: '申请理由（150字）',
-            align: "center",
-            dataIndex: 'applicationReasons'
+            dataIndex: 'statu'
           },
           {
             title: '操作',
@@ -231,9 +241,9 @@
         selectedRowKeys: [],
         selectedRows: [],
         url: {
-          list: "/list.national.grants/nationalGrants/list",
-          delete: "/list.national.grants/nationalGrants/delete",
-          deleteBatch: "/list.national.grants/nationalGrants/deleteBatch",
+          list: "/list.student.info/studentInfo/list",
+          delete: "/list.student.info/studentInfo/delete",
+          deleteBatch: "/list.student.info/studentInfo/deleteBatch",
         },
 
       }
@@ -325,12 +335,12 @@
         });
       },
       handleEdit: function (record) {
-        this.$refs.nationalGrantsModal.edit(record);
-        this.$refs.nationalGrantsModal.title = "编辑";
+        this.$refs.studentInfoModal.edit(record);
+        this.$refs.studentInfoModal.title = "编辑";
       },
       handleAdd: function () {
-        this.$refs.nationalGrantsModal.add();
-        this.$refs.nationalGrantsModal.title = "新增";
+        this.$refs.studentInfoModal.add();
+        this.$refs.studentInfoModal.title = "新增";
       },
       handleTableChange(pagination, filters, sorter) {
         //分页、排序、筛选变化时触发

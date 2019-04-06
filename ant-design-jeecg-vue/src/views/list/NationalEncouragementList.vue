@@ -86,23 +86,23 @@
     <!-- table区域-end -->
 
     <!-- 表单区域 -->
-    <nationalGrants-modal ref="nationalGrantsModal" @ok="modalFormOk"></nationalGrants-modal>
+    <nationalEncouragement-modal ref="nationalEncouragementModal" @ok="modalFormOk"></nationalEncouragement-modal>
   </a-card>
 </template>
 
 <script>
-  import NationalGrantsModal from './modules/NationalGrantsModal'
+  import NationalEncouragementModal from './modules/NationalEncouragementModal'
   import {filterObj} from '@/utils/util'
   import {deleteAction, getAction} from '@/api/manage'
 
   export default {
-    name: "NationalGrantsList",
+    name: "NationalEncouragementList",
     components: {
-      NationalGrantsModal
+      NationalEncouragementModal
     },
     data() {
       return {
-        description: '国家助学金信息管理页面',
+        description: '国家励志奖学金信息管理页面',
         // 查询条件
         queryParam: {},
         // 表头
@@ -168,39 +168,44 @@
             dataIndex: 'basePoorGrade'
           },
           {
-            title: '学年',
+            title: '总人数',
             align: "center",
-            dataIndex: 'studyYear'
+            dataIndex: 'stuTotalNumber'
           },
           {
-            title: '学期',
+            title: '总人数的统计种类',
             align: "center",
-            dataIndex: 'studyTeam'
+            dataIndex: 'stuSumType'
           },
           {
-            title: '出生日期',
+            title: '成绩排名',
             align: "center",
-            dataIndex: 'birthday'
+            dataIndex: 'stuMarkRank'
           },
           {
-            title: '困难等级',
+            title: '是否有综合考评，1表示有，0表示没有',
             align: "center",
-            dataIndex: 'poorLevel'
+            dataIndex: 'stuIsHaveEvaluation'
           },
           {
-            title: '应发金额',
+            title: '综合考评排名',
             align: "center",
-            dataIndex: 'amountPayable'
-          },
-          {
-            title: '发放日期',
-            align: "center",
-            dataIndex: 'payDate'
+            dataIndex: 'stuEvaluationRank'
           },
           {
             title: '申请理由（150字）',
             align: "center",
             dataIndex: 'applicationReasons'
+          },
+          {
+            title: '备注',
+            align: "center",
+            dataIndex: 'remark'
+          },
+          {
+            title: '状态',
+            align: "center",
+            dataIndex: 'statu'
           },
           {
             title: '操作',
@@ -231,9 +236,9 @@
         selectedRowKeys: [],
         selectedRows: [],
         url: {
-          list: "/list.national.grants/nationalGrants/list",
-          delete: "/list.national.grants/nationalGrants/delete",
-          deleteBatch: "/list.national.grants/nationalGrants/deleteBatch",
+          list: "/list.national.encouragement/nationalEncouragement/list",
+          delete: "/list.national.encouragement/nationalEncouragement/delete",
+          deleteBatch: "/list.national.encouragement/nationalEncouragement/deleteBatch",
         },
 
       }
@@ -325,12 +330,12 @@
         });
       },
       handleEdit: function (record) {
-        this.$refs.nationalGrantsModal.edit(record);
-        this.$refs.nationalGrantsModal.title = "编辑";
+        this.$refs.nationalEncouragementModal.edit(record);
+        this.$refs.nationalEncouragementModal.title = "编辑";
       },
       handleAdd: function () {
-        this.$refs.nationalGrantsModal.add();
-        this.$refs.nationalGrantsModal.title = "新增";
+        this.$refs.nationalEncouragementModal.add();
+        this.$refs.nationalEncouragementModal.title = "新增";
       },
       handleTableChange(pagination, filters, sorter) {
         //分页、排序、筛选变化时触发

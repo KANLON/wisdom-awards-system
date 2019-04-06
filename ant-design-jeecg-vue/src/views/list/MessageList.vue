@@ -7,13 +7,13 @@
         <a-row :gutter="24">
 
           <a-col :span="6">
-            <a-form-item label="姓名">
-              <a-input placeholder="请输入姓名" v-model="queryParam.baseRealName"></a-input>
+            <a-form-item label="消息标题">
+              <a-input placeholder="请输入消息标题" v-model="queryParam.title"></a-input>
             </a-form-item>
           </a-col>
           <a-col :span="6">
-            <a-form-item label="性别，0表示女，1表示男">
-              <a-input placeholder="请输入性别，0表示女，1表示男" v-model="queryParam.baseSex"></a-input>
+            <a-form-item label="消息内容">
+              <a-input placeholder="请输入消息内容" v-model="queryParam.content"></a-input>
             </a-form-item>
           </a-col>
 
@@ -86,23 +86,23 @@
     <!-- table区域-end -->
 
     <!-- 表单区域 -->
-    <nationalGrants-modal ref="nationalGrantsModal" @ok="modalFormOk"></nationalGrants-modal>
+    <message-modal ref="messageModal" @ok="modalFormOk"></message-modal>
   </a-card>
 </template>
 
 <script>
-  import NationalGrantsModal from './modules/NationalGrantsModal'
+  import MessageModal from './modules/MessageModal'
   import {filterObj} from '@/utils/util'
   import {deleteAction, getAction} from '@/api/manage'
 
   export default {
-    name: "NationalGrantsList",
+    name: "MessageList",
     components: {
-      NationalGrantsModal
+      MessageModal
     },
     data() {
       return {
-        description: '国家助学金信息管理页面',
+        description: '消息管理管理页面',
         // 查询条件
         queryParam: {},
         // 表头
@@ -118,89 +118,29 @@
             }
           },
           {
-            title: '姓名',
+            title: '消息标题',
             align: "center",
-            dataIndex: 'baseRealName'
+            dataIndex: 'title'
           },
           {
-            title: '性别，0表示女，1表示男',
+            title: '消息内容',
             align: "center",
-            dataIndex: 'baseSex'
+            dataIndex: 'content'
           },
           {
-            title: '政治面貌',
+            title: '附件地址',
             align: "center",
-            dataIndex: 'basePolitical'
+            dataIndex: 'attachment'
           },
           {
-            title: '民族',
+            title: '备注',
             align: "center",
-            dataIndex: 'baseNation'
+            dataIndex: 'remark'
           },
           {
-            title: '入学年月',
+            title: '状态',
             align: "center",
-            dataIndex: 'baseComeSchoolDay'
-          },
-          {
-            title: '学号',
-            align: "center",
-            dataIndex: 'baseStudentId'
-          },
-          {
-            title: '班级',
-            align: "center",
-            dataIndex: 'baseClass'
-          },
-          {
-            title: '联系电话',
-            align: "center",
-            dataIndex: 'basePhone'
-          },
-          {
-            title: '身份证号',
-            align: "center",
-            dataIndex: 'baseIdCardNumber'
-          },
-          {
-            title: '贫困等级',
-            align: "center",
-            dataIndex: 'basePoorGrade'
-          },
-          {
-            title: '学年',
-            align: "center",
-            dataIndex: 'studyYear'
-          },
-          {
-            title: '学期',
-            align: "center",
-            dataIndex: 'studyTeam'
-          },
-          {
-            title: '出生日期',
-            align: "center",
-            dataIndex: 'birthday'
-          },
-          {
-            title: '困难等级',
-            align: "center",
-            dataIndex: 'poorLevel'
-          },
-          {
-            title: '应发金额',
-            align: "center",
-            dataIndex: 'amountPayable'
-          },
-          {
-            title: '发放日期',
-            align: "center",
-            dataIndex: 'payDate'
-          },
-          {
-            title: '申请理由（150字）',
-            align: "center",
-            dataIndex: 'applicationReasons'
+            dataIndex: 'statu'
           },
           {
             title: '操作',
@@ -231,9 +171,9 @@
         selectedRowKeys: [],
         selectedRows: [],
         url: {
-          list: "/list.national.grants/nationalGrants/list",
-          delete: "/list.national.grants/nationalGrants/delete",
-          deleteBatch: "/list.national.grants/nationalGrants/deleteBatch",
+          list: "/list.message/message/list",
+          delete: "/list.message/message/delete",
+          deleteBatch: "/list.message/message/deleteBatch",
         },
 
       }
@@ -325,12 +265,12 @@
         });
       },
       handleEdit: function (record) {
-        this.$refs.nationalGrantsModal.edit(record);
-        this.$refs.nationalGrantsModal.title = "编辑";
+        this.$refs.messageModal.edit(record);
+        this.$refs.messageModal.title = "编辑";
       },
       handleAdd: function () {
-        this.$refs.nationalGrantsModal.add();
-        this.$refs.nationalGrantsModal.title = "新增";
+        this.$refs.messageModal.add();
+        this.$refs.messageModal.title = "新增";
       },
       handleTableChange(pagination, filters, sorter) {
         //分页、排序、筛选变化时触发
