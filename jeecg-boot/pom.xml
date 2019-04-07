@@ -156,6 +156,14 @@
 			<artifactId>codegenerate</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+		<!-- smart-doc自动生成api文档-->
+		<dependency>
+			<groupId>com.github.shalousun</groupId>
+			<artifactId>smart-doc</artifactId>
+			<version>1.6</version>
+			<scope>test</scope>
+		</dependency>
 	
 	</dependencies>
 

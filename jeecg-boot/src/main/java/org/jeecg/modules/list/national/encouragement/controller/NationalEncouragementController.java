@@ -16,11 +16,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 
  /**
- * @Title: Controller
- * @Description: 国家励志奖学金信息
- * @author： jeecg-boot
- * @date：   2019-04-06
- * @version： V1.0
+ *  国家励志奖学金信息
+ * 国家励志奖学金信息
+ * @author jeecg-boot
+ * @since    2019-04-06
+ * @version V1.0
  */
 @RestController
 @RequestMapping("/list.national.encouragement/nationalEncouragement")
