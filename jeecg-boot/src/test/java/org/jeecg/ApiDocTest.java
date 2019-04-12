@@ -19,7 +19,7 @@ public class ApiDocTest {
      * 简单型接口，不需要指定请求头，并且项目是maven的.
      *
      */
-    @Test
+//    @Test
     public void testBuilderControllersApiSimple(){
         //将生成的文档输出到d:\md目录下，严格模式下api-doc会检测Controller的接口注释
         ApiDocBuilder.builderControllersApi("d:\\md",true);
@@ -28,7 +28,7 @@ public class ApiDocTest {
     /**
      * 包括设置请求头，缺失注释的字段批量在文档生成期使用定义好的注释
      */
-    @Test
+//    @Test
     public void testBuilderControllersApi() {
         ApiConfig config = new ApiConfig();
         config.setStrict(false);
