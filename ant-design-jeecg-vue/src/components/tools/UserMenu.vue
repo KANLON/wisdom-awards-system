@@ -51,7 +51,6 @@
       ...mapActions(["Logout"]),
       ...mapGetters(["nickname", "avatar"]),
       getAvatar(){
-        console.log('url = '+ imgView+this.avatar())
         return imgView+this.avatar()
       },
       handleLogout() {

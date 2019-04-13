@@ -21,7 +21,7 @@
     })
   }
 
-  console.log("123321",data)
+
   const tooltip = [
     'x*y',
     (x, y) => ({
