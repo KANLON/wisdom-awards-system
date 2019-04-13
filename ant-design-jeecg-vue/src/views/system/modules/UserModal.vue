@@ -8,7 +8,7 @@
     @cancel="handleCancel"
     cancelText="关闭"
     wrapClassName="ant-modal-cust-warp"
-    style="top:5%;height: 95%;overflow-y: hidden">
+    style="top:5%;height: auto;overflow-y: hidden">
 
     <template slot="title">
       <div style="width: 100%;">
@@ -17,7 +17,7 @@
           <a-button @click="togglescreen" style="height:18px;width:18px;padding: 0;border-width: 2px">&nbsp;&nbsp;</a-button>
         </span>
       </div>
-
+      style="top:5%;height
     </template>
 
     <a-spin :spinning="confirmLoading">

@@ -5,7 +5,7 @@
 	<groupId>org.jeecgframework.boot</groupId>
 	<artifactId>jeecg-boot</artifactId>
 	<version>1.0.1</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<parent>
 	    <groupId>org.springframework.boot</groupId>
@@ -183,6 +183,24 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+			<!-- docker配置   当要部署时， 运行 mvn clean package docker:build 则会自动构建docker的镜像到120.77.148.202上 -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<configuration>
+					<dockerHost>http://120.77.148.202:2375</dockerHost>
+					<imageName>kanlon/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>
