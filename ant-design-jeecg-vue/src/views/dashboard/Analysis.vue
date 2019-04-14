@@ -14,9 +14,6 @@
           </div>-->
           <a-tab-pane loading="true" tab="消息公告" key="1">
             <a-row>
-              <!--<a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">-->
-              <!--<bar title="销售额排行" />-->
-              <!--</a-col>-->
               <a-col :xl="24" :lg="24" :md="24" :sm="24" :xs="24">
                 <rank-time-list :list="rankTimeList"/>
               </a-col>
@@ -113,13 +110,6 @@
   //获取消息的url
   const messageUrl = "/list.message/message/list";
 
-
-/*  for (let i = 0; i < 7; i++) {
-    rankTimeList.push({
-      name: '申请励志奖学金的时间快到了，请同学尽快做好申请准备，第 ' + (i+1) + ' 篇测试文章',
-      time: '2019 年 10 月 '+i +' 日'
-    })
-  }*/
   export default {
     name: "Analysis",
     components: {

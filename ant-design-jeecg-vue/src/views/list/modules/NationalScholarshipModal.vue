@@ -20,7 +20,7 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="性别，0表示女，1表示男">
+          label="性别">
           <a-input placeholder="请输入性别，0表示女，1表示男" v-decorator="['baseSex', validatorRules.baseSex ]"/>
         </a-form-item>
         <a-form-item

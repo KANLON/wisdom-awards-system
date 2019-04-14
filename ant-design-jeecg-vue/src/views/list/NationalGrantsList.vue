@@ -123,7 +123,7 @@
             dataIndex: 'baseRealName'
           },
           {
-            title: '性别，0表示女，1表示男',
+            title: '性别',
             align: "center",
             dataIndex: 'baseSex'
           },
@@ -250,6 +250,14 @@
         var params = this.getQueryParams();//查询条件
         getAction(this.url.list, params).then((res) => {
           if (res.success) {
+            //将性别数字显示为中文
+            for(let i=0;i<res.result.records.length;i++){
+              if( res.result.records[i].baseSex===1 ){
+                this.$set(res.result.records[i], `baseSex`, '男');
+              }else{
+                this.$set(res.result.records[i], `baseSex`, '女');
+              }
+            }
             this.dataSource = res.result.records;
             this.ipagination.total = res.result.total;
           }
