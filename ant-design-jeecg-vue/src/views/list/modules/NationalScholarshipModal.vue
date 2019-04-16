@@ -20,7 +20,13 @@
         <a-form-item
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
-          label="性别">
+          label="学号">
+          <a-input placeholder="请输入学号" v-decorator="['baseStudentId', validatorRules.baseStudentId ]"/>
+        </a-form-item>
+        <a-form-item
+          :labelCol="labelCol"
+          :wrapperCol="wrapperCol"
+          label="性别，0表示女，1表示男">
           <a-input placeholder="请输入性别，0表示女，1表示男" v-decorator="['baseSex', validatorRules.baseSex ]"/>
         </a-form-item>
         <a-form-item
@@ -87,8 +93,9 @@
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           label="是否有综合考评，1表示有，0表示没有">
-          <a-input placeholder="请输入是否有综合考评，1表示有，0表示没有"
-                   v-decorator="['stuIsHaveEvaluation', validatorRules.stuIsHaveEvaluation ]"/>
+          <a-input
+            placeholder="请输入是否有综合考评，1表示有，0表示没有"
+            v-decorator="['stuIsHaveEvaluation', validatorRules.stuIsHaveEvaluation ]"/>
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -100,8 +107,9 @@
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           label="申请理由（200字）">
-          <a-input placeholder="请输入申请理由（200字）"
-                   v-decorator="['applicationReasons', validatorRules.applicationReasons ]"/>
+          <a-input
+            placeholder="请输入申请理由（200字）"
+            v-decorator="['applicationReasons', validatorRules.applicationReasons ]"/>
         </a-form-item>
         <a-form-item
           :labelCol="labelCol"
@@ -115,6 +123,18 @@
           label="院（系）意见">
           <a-input placeholder="请输入院（系）意见" v-decorator="['departmentOpinion', validatorRules.departmentOpinion ]"/>
         </a-form-item>
+        <a-form-item
+          :labelCol="labelCol"
+          :wrapperCol="wrapperCol"
+          label="备注">
+          <a-input placeholder="请输入备注" v-decorator="['remark', {}]"/>
+        </a-form-item>
+        <a-form-item
+          :labelCol="labelCol"
+          :wrapperCol="wrapperCol"
+          label="状态">
+          <a-input placeholder="请输入状态" v-decorator="['statu', validatorRules.statu ]"/>
+        </a-form-item>
 
       </a-form>
     </a-spin>
@@ -122,100 +142,101 @@
 </template>
 
 <script>
-  import {httpAction} from '@/api/manage'
+  import { httpAction } from '@/api/manage'
   import pick from 'lodash.pick'
 
   export default {
-    name: "NationalScholarshipModal",
+    name: 'NationalScholarshipModal',
     data() {
       return {
-        title: "操作",
+        title: '操作',
         visible: false,
         model: {},
         labelCol: {
-          xs: {span: 24},
-          sm: {span: 5},
+          xs: { span: 24 },
+          sm: { span: 5 }
         },
         wrapperCol: {
-          xs: {span: 24},
-          sm: {span: 16},
+          xs: { span: 24 },
+          sm: { span: 16 }
         },
 
         confirmLoading: false,
         form: this.$form.createForm(this),
         validatorRules: {
-          baseRealName: {rules: [{required: true, message: '请输入正式姓名!'}]},
-          baseSex: {rules: [{required: true, message: '请输入性别，0表示女，1表示男!'}]},
-          baseBirthMonth: {rules: [{required: true, message: '请输入出生年月!'}]},
-          basePolitical: {rules: [{required: true, message: '请输入政治面貌!'}]},
-          baseComeSchoolDay: {rules: [{required: true, message: '请输入入学时间!'}]},
-          baseMajor: {rules: [{required: true, message: '请输入专业!'}]},
-          baseEducationalSystem: {rules: [{required: true, message: '请输入学制!'}]},
-          basePhone: {rules: [{required: true, message: '请输入联系电话!'}]},
-          baseIdCardNumber: {rules: [{required: true, message: '请输入身份证号!'}]},
-          stuMarkRank: {rules: [{required: true, message: '请输入成绩排名!'}]},
-          stuTotalNumber: {rules: [{required: true, message: '请输入总人数!'}]},
-          stuIsHaveEvaluation: {rules: [{required: true, message: '请输入是否有综合考评，1表示有，0表示没有!'}]},
-          stuEvaluationRank: {rules: [{required: true, message: '请输入综合考评排名!'}]},
-          applicationReasons: {rules: [{required: true, message: '请输入申请理由（200字）!'}]},
-          recommendReasons: {rules: [{required: true, message: '请输入推荐理由（100字）!'}]},
-          departmentOpinion: {rules: [{required: true, message: '请输入院（系）意见!'}]},
+          baseRealName: { rules: [{ required: true, message: '请输入正式姓名!' }] },
+          baseStudentId: { rules: [{ required: true, message: '请输入学号!' }] },
+          baseSex: { rules: [{ required: true, message: '请输入性别，0表示女，1表示男!' }] },
+          baseBirthMonth: { rules: [{ required: true, message: '请输入出生年月!' }] },
+          basePolitical: { rules: [{ required: true, message: '请输入政治面貌!' }] },
+          baseComeSchoolDay: { rules: [{ required: true, message: '请输入入学时间!' }] },
+          baseMajor: { rules: [{ required: true, message: '请输入专业!' }] },
+          baseEducationalSystem: { rules: [{ required: true, message: '请输入学制!' }] },
+          basePhone: { rules: [{ required: true, message: '请输入联系电话!' }] },
+          baseIdCardNumber: { rules: [{ required: true, message: '请输入身份证号!' }] },
+          stuMarkRank: { rules: [{ required: true, message: '请输入成绩排名!' }] },
+          stuTotalNumber: { rules: [{ required: true, message: '请输入总人数!' }] },
+          stuIsHaveEvaluation: { rules: [{ required: true, message: '请输入是否有综合考评，1表示有，0表示没有!' }] },
+          stuEvaluationRank: { rules: [{ required: true, message: '请输入综合考评排名!' }] },
+          applicationReasons: { rules: [{ required: true, message: '请输入申请理由（200字）!' }] },
+          recommendReasons: { rules: [{ required: true, message: '请输入推荐理由（100字）!' }] },
+          departmentOpinion: { rules: [{ required: true, message: '请输入院（系）意见!' }] },
+          statu: { rules: [{ required: true, message: '请输入状态!' }] }
         },
         url: {
-          add: "/list.national.scholarship/nationalScholarship/add",
-          edit: "/list.national.scholarship/nationalScholarship/edit",
-        },
+          add: '/list.national.scholarship/nationalScholarship/add',
+          edit: '/list.national.scholarship/nationalScholarship/edit'
+        }
       }
     },
     created() {
     },
     methods: {
       add() {
-        this.edit({});
+        this.edit({})
       },
       edit(record) {
-        this.form.resetFields();
-        this.model = Object.assign({}, record);
-        this.visible = true;
+        this.form.resetFields()
+        this.model = Object.assign({}, record)
+        this.visible = true
         this.$nextTick(() => {
-          this.form.setFieldsValue(pick(this.model, 'baseRealName', 'baseSex', 'baseBirthMonth', 'basePolitical', 'baseNation', 'baseComeSchoolDay', 'baseMajor', 'baseEducationalSystem', 'basePhone', 'baseIdCardNumber', 'stuMarkRank', 'stuTotalNumber', 'stuIsHaveEvaluation', 'stuEvaluationRank', 'applicationReasons', 'recommendReasons', 'departmentOpinion'))
+          this.form.setFieldsValue(pick(this.model, 'baseRealName', 'baseStudentId', 'baseSex', 'baseBirthMonth', 'basePolitical', 'baseNation', 'baseComeSchoolDay', 'baseMajor', 'baseEducationalSystem', 'basePhone', 'baseIdCardNumber', 'stuMarkRank', 'stuTotalNumber', 'stuIsHaveEvaluation', 'stuEvaluationRank', 'applicationReasons', 'recommendReasons', 'departmentOpinion', 'remark', 'statu'))
           //时间格式化
-        });
+        })
 
       },
       close() {
-        this.$emit('close');
-        this.visible = false;
+        this.$emit('close')
+        this.visible = false
       },
       handleOk() {
-        const that = this;
+        const that = this
         // 触发表单验证
         this.form.validateFields((err, values) => {
           if (!err) {
-            that.confirmLoading = true;
-            let httpurl = '';
-            let method = '';
+            that.confirmLoading = true
+            let httpurl = ''
+            let method = ''
             if (!this.model.id) {
-              httpurl += this.url.add;
-              method = 'post';
+              httpurl += this.url.add
+              method = 'post'
             } else {
-              httpurl += this.url.edit;
-              method = 'put';
+              httpurl += this.url.edit
+              method = 'put'
             }
-            let formData = Object.assign(this.model, values);
+            let formData = Object.assign(this.model, values)
             //时间格式化
-
             console.log(formData)
             httpAction(httpurl, formData, method).then((res) => {
               if (res.success) {
-                that.$message.success(res.message);
-                that.$emit('ok');
+                that.$message.success(res.message)
+                that.$emit('ok')
               } else {
-                that.$message.warning(res.message);
+                that.$message.warning(res.message)
               }
             }).finally(() => {
-              that.confirmLoading = false;
-              that.close();
+              that.confirmLoading = false
+              that.close()
             })
 
 
@@ -224,7 +245,7 @@
       },
       handleCancel() {
         this.close()
-      },
+      }
 
 
     }

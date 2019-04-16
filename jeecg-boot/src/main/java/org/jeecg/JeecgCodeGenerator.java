@@ -30,15 +30,15 @@ public class JeecgCodeGenerator {
     	/**[2]、表配置参数 */
 		TableVo table = new TableVo();
 		//表名
-		table.setTableName("wisdom_message");
+		table.setTableName("wisdom_national_scholarship");
 		//表主键策略（目前只支持UUID）
 		table.setPrimaryKeyPolicy("uuid");
 		//子业务包名
-		table.setEntityPackage("list.message");
+		table.setEntityPackage("list.national.scholarship");
 		//实体类名
-		table.setEntityName("Message");
+		table.setEntityName("NationalScholarship");
 		//功能描述
-		table.setFtlDescription("消息管理");
+		table.setFtlDescription("国奖管理");
 		new CodeGenerateOne(table).generateCodeFile();
 		System.out.println("----jeecg--------- Code------------- Generation -----[单表模型]------- 生成完成。。。");
 	}

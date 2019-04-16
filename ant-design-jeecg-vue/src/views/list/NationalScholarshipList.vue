@@ -12,8 +12,8 @@
             </a-form-item>
           </a-col>
           <a-col :span="6">
-            <a-form-item label="性别">
-              <a-input placeholder="请输入性别，0表示女，1表示男" v-model="queryParam.baseSex"></a-input>
+            <a-form-item label="学号">
+              <a-input placeholder="请输入学号" v-model="queryParam.baseStudentId"></a-input>
             </a-form-item>
           </a-col>
 
@@ -92,17 +92,17 @@
 
 <script>
   import NationalScholarshipModal from './modules/NationalScholarshipModal'
-  import {filterObj} from '@/utils/util'
-  import {deleteAction, getAction} from '@/api/manage'
+  import { filterObj } from '@/utils/util'
+  import { deleteAction, getAction } from '@/api/manage'
 
   export default {
-    name: "NationalScholarshipList",
+    name: 'NationalScholarshipList',
     components: {
       NationalScholarshipModal
     },
     data() {
       return {
-        description: '国家奖学金信息管理页面',
+        description: '国奖管理管理页面',
         // 查询条件
         queryParam: {},
         // 表头
@@ -112,101 +112,116 @@
             dataIndex: '',
             key: 'rowIndex',
             width: 60,
-            align: "center",
-            customRender: function (t, r, index) {
-              return parseInt(index) + 1;
+            align: 'center',
+            customRender: function(t, r, index) {
+              return parseInt(index) + 1
             }
           },
           {
             title: '正式姓名',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseRealName'
           },
           {
+            title: '学号',
+            align: 'center',
+            dataIndex: 'baseStudentId'
+          },
+          {
             title: '性别',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseSex'
           },
           {
             title: '出生年月',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseBirthMonth'
           },
           {
             title: '政治面貌',
-            align: "center",
+            align: 'center',
             dataIndex: 'basePolitical'
           },
           {
             title: '民族',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseNation'
           },
           {
             title: '入学时间',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseComeSchoolDay'
           },
           {
             title: '专业',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseMajor'
           },
           {
             title: '学制',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseEducationalSystem'
           },
           {
             title: '联系电话',
-            align: "center",
+            align: 'center',
             dataIndex: 'basePhone'
           },
           {
             title: '身份证号',
-            align: "center",
+            align: 'center',
             dataIndex: 'baseIdCardNumber'
           },
           {
             title: '成绩排名',
-            align: "center",
+            align: 'center',
             dataIndex: 'stuMarkRank'
           },
           {
             title: '总人数',
-            align: "center",
+            align: 'center',
             dataIndex: 'stuTotalNumber'
           },
           {
             title: '是否有综合考评，1表示有，0表示没有',
-            align: "center",
+            align: 'center',
             dataIndex: 'stuIsHaveEvaluation'
           },
           {
             title: '综合考评排名',
-            align: "center",
+            align: 'center',
             dataIndex: 'stuEvaluationRank'
           },
           {
             title: '申请理由（200字）',
-            align: "center",
+            align: 'center',
             dataIndex: 'applicationReasons'
           },
           {
             title: '推荐理由（100字）',
-            align: "center",
+            align: 'center',
             dataIndex: 'recommendReasons'
           },
           {
             title: '院（系）意见',
-            align: "center",
+            align: 'center',
             dataIndex: 'departmentOpinion'
+          },
+          {
+            title: '备注',
+            align: 'center',
+            dataIndex: 'remark'
+          },
+          {
+            title: '状态',
+            align: 'center',
+            dataIndex: 'statu'
           },
           {
             title: '操作',
             dataIndex: 'action',
-            align: "center",
-            scopedSlots: {customRender: 'action'},
+            align: 'center',
+            scopedSlots: { customRender: 'action' }
           }
         ],
         //数据集
@@ -217,37 +232,37 @@
           pageSize: 10,
           pageSizeOptions: ['10', '20', '30'],
           showTotal: (total, range) => {
-            return range[0] + "-" + range[1] + " 共" + total + "条"
+            return range[0] + '-' + range[1] + ' 共' + total + '条'
           },
           showQuickJumper: true,
           showSizeChanger: true,
           total: 0
         },
         isorter: {
-          column: 'ctime',
-          order: 'desc',
+          column: 'mtime',
+          order: 'desc'
         },
         loading: false,
         selectedRowKeys: [],
         selectedRows: [],
         url: {
-          list: "/list.national.scholarship/nationalScholarship/list",
-          delete: "/list.national.scholarship/nationalScholarship/delete",
-          deleteBatch: "/list.national.scholarship/nationalScholarship/deleteBatch",
-        },
+          list: '/list.national.scholarship/nationalScholarship/list',
+          delete: '/list.national.scholarship/nationalScholarship/delete',
+          deleteBatch: '/list.national.scholarship/nationalScholarship/deleteBatch'
+        }
 
       }
     },
     created() {
-      this.loadData();
+      this.loadData()
     },
     methods: {
       loadData(arg) {
         //加载数据 若传入参数1则加载第一页的内容
         if (arg === 1) {
-          this.ipagination.current = 1;
+          this.ipagination.current = 1
         }
-        var params = this.getQueryParams();//查询条件
+        var params = this.getQueryParams()//查询条件
         getAction(this.url.list, params).then((res) => {
           if (res.success) {
             //将性别数字显示为中文
@@ -258,102 +273,102 @@
                 this.$set(res.result.records[i], `baseSex`, '女');
               }
             }
-            this.dataSource = res.result.records;
-            this.ipagination.total = res.result.total;
+            this.dataSource = res.result.records
+            this.ipagination.total = res.result.total
           }
         })
       },
       getQueryParams() {
-        var param = Object.assign({}, this.queryParam, this.isorter);
-        param.field = this.getQueryField();
-        param.pageNo = this.ipagination.current;
-        param.pageSize = this.ipagination.pageSize;
-        return filterObj(param);
+        var param = Object.assign({}, this.queryParam, this.isorter)
+        param.field = this.getQueryField()
+        param.pageNo = this.ipagination.current
+        param.pageSize = this.ipagination.pageSize
+        return filterObj(param)
       },
       getQueryField() {
         //TODO 字段权限控制
-        var str = "id,";
+        var str = 'id,'
         for (var a = 0; a < this.columns.length; a++) {
-          str += "," + this.columns[a].dataIndex;
+          str += ',' + this.columns[a].dataIndex
         }
-        return str;
+        return str
       },
       onSelectChange(selectedRowKeys, selectionRows) {
-        this.selectedRowKeys = selectedRowKeys;
-        this.selectionRows = selectionRows;
+        this.selectedRowKeys = selectedRowKeys
+        this.selectionRows = selectionRows
       },
       onClearSelected() {
-        this.selectedRowKeys = [];
-        this.selectionRows = [];
+        this.selectedRowKeys = []
+        this.selectionRows = []
       },
       searchQuery() {
-        this.loadData(1);
+        this.loadData(1)
       },
       searchReset() {
-        var that = this;
-        that.queryParam = {};
-        that.loadData(1);
+        var that = this
+        that.queryParam = {}
+        that.loadData(1)
       },
-      batchDel: function () {
+      batchDel: function() {
         if (this.selectedRowKeys.length <= 0) {
-          this.$message.warning('请选择一条记录！');
-          return;
+          this.$message.warning('请选择一条记录！')
+          return
         } else {
-          var ids = "";
+          var ids = ''
           for (var a = 0; a < this.selectedRowKeys.length; a++) {
-            ids += this.selectedRowKeys[a] + ",";
+            ids += this.selectedRowKeys[a] + ','
           }
-          var that = this;
+          var that = this
           this.$confirm({
-            title: "确认删除",
-            content: "是否删除选中数据?",
-            onOk: function () {
-              deleteAction(that.url.deleteBatch, {ids: ids}).then((res) => {
+            title: '确认删除',
+            content: '是否删除选中数据?',
+            onOk: function() {
+              deleteAction(that.url.deleteBatch, { ids: ids }).then((res) => {
                 if (res.success) {
-                  that.$message.success(res.message);
-                  that.loadData();
-                  that.onClearSelected();
+                  that.$message.success(res.message)
+                  that.loadData()
+                  that.onClearSelected()
                 } else {
-                  that.$message.warning(res.message);
+                  that.$message.warning(res.message)
                 }
-              });
+              })
             }
-          });
+          })
         }
       },
-      handleDelete: function (id) {
-        var that = this;
-        deleteAction(that.url.delete, {id: id}).then((res) => {
+      handleDelete: function(id) {
+        var that = this
+        deleteAction(that.url.delete, { id: id }).then((res) => {
           if (res.success) {
-            that.$message.success(res.message);
-            that.loadData();
+            that.$message.success(res.message)
+            that.loadData()
           } else {
-            that.$message.warning(res.message);
+            that.$message.warning(res.message)
           }
-        });
+        })
       },
-      handleEdit: function (record) {
-        this.$refs.nationalScholarshipModal.edit(record);
-        this.$refs.nationalScholarshipModal.title = "编辑";
+      handleEdit: function(record) {
+        this.$refs.nationalScholarshipModal.edit(record)
+        this.$refs.nationalScholarshipModal.title = '编辑'
       },
-      handleAdd: function () {
-        this.$refs.nationalScholarshipModal.add();
-        this.$refs.nationalScholarshipModal.title = "新增";
+      handleAdd: function() {
+        this.$refs.nationalScholarshipModal.add()
+        this.$refs.nationalScholarshipModal.title = '新增'
       },
       handleTableChange(pagination, filters, sorter) {
         //分页、排序、筛选变化时触发
-        console.log(sorter);
+        console.log(sorter)
         //TODO 筛选
         if (Object.keys(sorter).length > 0) {
-          this.isorter.column = sorter.field;
-          this.isorter.order = "ascend" == sorter.order ? "asc" : "desc"
+          this.isorter.column = sorter.field
+          this.isorter.order = 'ascend' == sorter.order ? 'asc' : 'desc'
         }
-        this.ipagination = pagination;
-        this.loadData();
+        this.ipagination = pagination
+        this.loadData()
       },
       modalFormOk() {
         // 新增/修改 成功时，重载列表
-        this.loadData();
+        this.loadData()
       }
     }
   }

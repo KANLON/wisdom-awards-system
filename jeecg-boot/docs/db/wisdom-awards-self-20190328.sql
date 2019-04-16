@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS wisdom_national_scholarship;
 CREATE TABLE wisdom_national_scholarship(
   id VARCHAR(32) PRIMARY KEY NOT NULL COMMENT 'uuid',
   base_real_name VARCHAR(20) NOT NULL COMMENT '正式姓名',
+  base_student_id VARCHAR(10) NOT NULL COMMENT '学号',
   base_sex TINYINT(1) NOT NULL DEFAULT 1 COMMENT '性别，0表示女，1表示男',
   base_birth_month CHAR(7) NOT NULL COMMENT '出生年月',
   base_political VARCHAR(10) NOT NULL DEFAULT '汉' COMMENT '政治面貌',
