@@ -1,8 +1,3 @@
-
-
-
-
-
 package org.jeecg;
 
 import org.springframework.boot.SpringApplication;

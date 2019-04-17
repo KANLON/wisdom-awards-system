@@ -245,6 +245,7 @@
 
 <script>
   import { httpAction } from '@/api/manage'
+  import pick from 'lodash.pick'
 
   export default {
     name: 'BaseForm',
@@ -252,7 +253,7 @@
       return {
         description: '国家奖学金申请提交页',
         value: 1,
-
+        model: {},
         // form
         form: this.$form.createForm(this),
 
@@ -263,6 +264,18 @@
       }
     },
     methods: {
+      add() {
+        this.edit({})
+      },
+      edit(record) {
+        this.form.resetFields()
+        this.model = Object.assign({}, record)
+        this.visible = true
+        this.$nextTick(() => {
+          this.form.setFieldsValue(pick(this.model, 'baseRealName', 'baseStudentId', 'baseSex', 'baseBirthMonth', 'basePolitical', 'baseNation', 'baseComeSchoolDay', 'baseMajor', 'baseEducationalSystem', 'basePhone', 'baseIdCardNumber', 'stuMarkRank', 'stuTotalNumber', 'stuIsHaveEvaluation', 'stuEvaluationRank', 'applicationReasons', 'recommendReasons', 'departmentOpinion', 'remark', 'statu'))
+          //时间格式化
+        })
+      },
 
       // handler
       handleSubmit (e) {
@@ -270,14 +283,15 @@
         this.form.validateFields((err, values) => {
           if (!err) {
             // eslint-disable-next-line no-console
-            console.log('Received values of form: ', values)
-            let httpurl = ''
-            let method = ''
+            this.add();
+            console.log('Received values of form: ', values);
+            let httpurl = '';
+            let method = '';
             if (!this.model.id) {
-              httpurl += this.url.add
+              httpurl += this.url.add;
               method = 'post'
             } else {
-              httpurl += this.url.edit
+              httpurl += this.url.edit;
               method = 'put'
             }
             let formData = Object.assign(this.model, values)
@@ -297,3 +311,5 @@
     }
   }
 </script>
+
+
